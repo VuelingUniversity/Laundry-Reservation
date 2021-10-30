@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WundaWashReservations.ADO.Infra
+namespace WundaWashReservations.Email.ServiceLibrary.Interfaces
 {
-    public class Class1
+    public interface IEmailService
     {
     }
 }

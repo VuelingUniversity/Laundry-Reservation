@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F05997C-3FFF-49ED-9D34-EDDCADB8CA0F}</ProjectGuid>
+    <ProjectGuid>{EA37C99E-A70F-455E-9EAD-2C6FB90B4A4C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WundaWashReservations.ADO.Infra</RootNamespace>
-    <AssemblyName>WundaWashReservations.ADO.Infra</AssemblyName>
+    <RootNamespace>WundaWashReservations.Email.ServiceLibrary</RootNamespace>
+    <AssemblyName>WundaWashReservations.Email.ServiceLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,14 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IEmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\ReservationRepository.cs" />
+    <Compile Include="Services\EmailService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WundaWashReservations.Core\WundaWashReservations.Core.csproj">
-      <Project>{0563D180-C50E-4574-B9F4-ACC486761E7E}</Project>
-      <Name>WundaWashReservations.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
