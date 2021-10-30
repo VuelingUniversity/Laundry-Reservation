@@ -9,5 +9,9 @@ namespace WundaWashReservations.Email.ServiceLibrary.Services
 {
     public class EmailService : IEmailService
     {
+        public void SendConfirmationEmail(string email, int machineId, int pin)
+        {
+            Console.WriteLine($"Email enviado a {email}. Reserva de maquina {machineId}, PIN de desbloqueo: {pin}");
+        }
     }
 }

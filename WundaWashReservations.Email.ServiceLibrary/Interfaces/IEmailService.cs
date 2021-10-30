@@ -8,5 +8,6 @@ namespace WundaWashReservations.Email.ServiceLibrary.Interfaces
 {
     public interface IEmailService
     {
+        void SendConfirmationEmail(string email, int machineId, int pin);
     }
 }

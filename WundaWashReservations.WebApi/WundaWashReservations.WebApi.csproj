@@ -43,8 +43,36 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=6.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.6.3.0\lib\netstandard2.0\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi, Version=6.0.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.6.0.1\lib\net472\Autofac.Integration.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.7.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -84,6 +112,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\IocConfiguration.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Global.asax.cs">
@@ -103,6 +132,32 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WundaWashReservations.ADO.Infra\WundaWashReservations.ADO.Infra.csproj">
+      <Project>{5F05997C-3FFF-49ED-9D34-EDDCADB8CA0F}</Project>
+      <Name>WundaWashReservations.ADO.Infra</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WundaWashReservations.Core\WundaWashReservations.Core.csproj">
+      <Project>{0563D180-C50E-4574-B9F4-ACC486761E7E}</Project>
+      <Name>WundaWashReservations.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WundaWashReservations.Email.ServiceLibrary\WundaWashReservations.Email.ServiceLibrary.csproj">
+      <Project>{EA37C99E-A70F-455E-9EAD-2C6FB90B4A4C}</Project>
+      <Name>WundaWashReservations.Email.ServiceLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WundaWashReservations.MachineApi.Infra\WundaWashReservations.MachineApi.Infra.csproj">
+      <Project>{1B2871E3-3B16-4E4E-AB42-A8B707A29E5A}</Project>
+      <Name>WundaWashReservations.MachineApi.Infra</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WundaWashReservations.ServiceLibrary\WundaWashReservations.ServiceLibrary.csproj">
+      <Project>{4DA7E780-C6F0-4CB9-85EE-2416E88331F6}</Project>
+      <Name>WundaWashReservations.ServiceLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WundaWashReservations.Sms.ServiceLibrary\WundaWashReservations.Sms.ServiceLibrary.csproj">
+      <Project>{192250C9-93AE-4A0C-B2BD-6485C37C16F8}</Project>
+      <Name>WundaWashReservations.Sms.ServiceLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

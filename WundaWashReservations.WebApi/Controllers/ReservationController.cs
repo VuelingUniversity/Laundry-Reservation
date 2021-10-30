@@ -4,11 +4,19 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WundaWashReservations.ServiceLibrary.Interfaces;
 
 namespace WundaWashReservations.WebApi.Controllers
 {
     public class ReservationController : ApiController
     {
+        private readonly IReservationService _reservationService;
+
+        public ReservationController(IReservationService reservationService)
+        {
+            _reservationService = reservationService;
+        }
+
         // GET: api/Reservation
 
         public IEnumerable<string> Get()
