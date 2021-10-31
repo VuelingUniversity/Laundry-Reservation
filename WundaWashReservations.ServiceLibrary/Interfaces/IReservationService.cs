@@ -10,6 +10,8 @@ namespace WundaWashReservations.ServiceLibrary.Interfaces
     {
         bool CreateReservation(DateTime reservationDate, int phoneNumber, string email);
 
+        void RevertCreateReservation(bool repositorySaveInDBResponse, bool machineLockReponse, string reservationId, int machineId);
+
         bool ClaimReservation(int machineId, int pin);
 
         bool CancelReservation(string reservationId);
@@ -19,5 +21,7 @@ namespace WundaWashReservations.ServiceLibrary.Interfaces
         int ChooseWashMachine();
 
         int GeneratePin();
+
+        void DeleteReservation(string reservationId);
     }
 }

@@ -13,6 +13,7 @@ namespace WundaWashReservations.ADO.Infra.Queries
         public const string GetReservationIdByPin = "SELECT Reservation.Id FROM Reservation WHERE MachineId = {0} AND Pin = {1}";
         public const string GetMachineId = "SELECT Reservation.MachineId FROM Reservation WHERE Id = '{0}'";
         public const string GetEmail = "SELECT Reservation.Email FROM Reservation WHERE Id = '{0}'";
-        public const string DeleteReservation = "DELETE * FROM Reservation WHERE Id = '{0}'";
+        public const string GetStatus = "SELECT Reservation.Status FROM Reservation WHERE Id = '{0}'";
+        public const string DeleteReservation = "DELETE FROM Reservation WHERE Id = '{0}'";
     }
 }

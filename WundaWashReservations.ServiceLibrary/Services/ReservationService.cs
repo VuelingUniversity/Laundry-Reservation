@@ -45,8 +45,8 @@ namespace WundaWashReservations.ServiceLibrary.Services
                 var repositorySaveInDBResponse = _reservationRepository.SaveReservation(reservation);
                 _emailService.SendConfirmationEmail(email, reservation.MachineId, reservation.Pin);
                 var machineLockReponse = _machineApiRepository.LockMachine(reservation.Id, reservation.MachineId, reservationDate, reservation.Pin);
+                RevertCreateReservation(repositorySaveInDBResponse, machineLockReponse, reservation.Id, reservation.MachineId);
                 return repositorySaveInDBResponse && machineLockReponse;
-                // control de si no se guarda en db o no hace lock la machine api. Si no se envia el email que?
             }
             catch (Exception)
             {
@@ -54,13 +54,26 @@ namespace WundaWashReservations.ServiceLibrary.Services
             }
         }
 
+        public void RevertCreateReservation(bool repositorySaveInDBResponse, bool machineLockReponse, string reservationId, int machineId)
+        {
+            if (!repositorySaveInDBResponse)
+            {
+                _machineApiRepository.UnlockMachine(reservationId, machineId);
+            }
+            if (!machineLockReponse)
+            {
+                _reservationRepository.DeleteReservation(reservationId);
+            }
+        }
+
         public bool ClaimReservation(int machineNumber, int pin)
         {
             try
             {
-                string reservationId = _reservationRepository.GetReservationIdByPin(machineNumber, pin);
+                var reservationId = _reservationRepository.GetReservationIdByPin(machineNumber, pin);
+                var status = _reservationRepository.GetReservationStatus(reservationId);
 
-                if (!String.IsNullOrEmpty(reservationId))
+                if (!String.IsNullOrEmpty(reservationId) && (status != StatusEnum.Used | status != StatusEnum.Cancelled))
                 {
                     var updateResponse = _reservationRepository.UpdateReservationStatus(reservationId, StatusEnum.Used);
                     var unlockResponse = _machineApiRepository.UnlockMachine(reservationId, machineNumber);
@@ -106,6 +119,11 @@ namespace WundaWashReservations.ServiceLibrary.Services
         public int GeneratePin()
         {
             return new Random().Next(10000, 99999);
+        }
+
+        public void DeleteReservation(string reservationId)
+        {
+            _reservationRepository.DeleteReservation(reservationId);
         }
     }
 }

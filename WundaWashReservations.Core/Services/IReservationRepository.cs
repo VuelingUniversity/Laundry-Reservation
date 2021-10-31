@@ -19,5 +19,9 @@ namespace WundaWashReservations.Core.Services
         int GetMachineId(string reservationId);
 
         string GetEmail(string reservationId);
+
+        void DeleteReservation(string reservationId);
+
+        StatusEnum GetReservationStatus(string reservationId);
     }
 }

@@ -138,5 +138,47 @@ namespace WundaWashReservations.ADO.Infra.Repositories
                 throw;
             }
         }
+
+        public void DeleteReservation(string reservationId)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString.WundaWashReservationsConnection))
+                {
+                    connection.Open();
+                    StringBuilder stringBuilder = new StringBuilder();
+                    SqlCommand command = new SqlCommand(stringBuilder.AppendFormat(SqlQueries.DeleteReservation, reservationId).ToString(), connection);
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public StatusEnum GetReservationStatus(string reservationId)
+        {
+            try
+            {
+                StatusEnum status = 0;
+                using (SqlConnection connection = new SqlConnection(ConnectionString.WundaWashReservationsConnection))
+                {
+                    connection.Open();
+                    StringBuilder stringBuilder = new StringBuilder();
+                    using (SqlCommand command = new SqlCommand(stringBuilder.AppendFormat(SqlQueries.GetEmail, reservationId).ToString(), connection))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        reader.Read();
+                        status = (StatusEnum)reader.GetInt32(0);
+                    }
+                }
+                return status;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
