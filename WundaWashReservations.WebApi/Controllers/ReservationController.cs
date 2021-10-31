@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using WundaWashReservations.ServiceLibrary.Interfaces;
+using WundaWashReservations.WebApi.Models;
 
 namespace WundaWashReservations.WebApi.Controllers
 {
@@ -17,32 +18,23 @@ namespace WundaWashReservations.WebApi.Controllers
             _reservationService = reservationService;
         }
 
-        // GET: api/Reservation
-
-        public IEnumerable<string> Get()
+        [HttpPost]
+        public bool CreateReservation([FromBody] CreateReservationRequest reservationRequest)
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/Reservation/nombremetodo/5
-
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Reservation
-        public void Post([FromBody] string value)
-        {
+            try
+            {
+                return _reservationService.CreateReservation(reservationRequest.ReservationDate, reservationRequest.PhoneNumber, reservationRequest.Email);
+            }
+            catch (Exception exception)
+            {
+                // log
+                throw;
+            }
         }
 
         // PUT: api/Reservation/5
+        //[ActionName("Thumbnail")] Con esto se especifica el nombre del action en lugar del del metodo.
         public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/Reservation/5
-        public void Delete(int id)
         {
         }
     }

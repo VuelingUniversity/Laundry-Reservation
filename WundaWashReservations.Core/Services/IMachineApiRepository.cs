@@ -8,5 +8,8 @@ namespace WundaWashReservations.Core.Services
 {
     public interface IMachineApiRepository
     {
+        bool LockMachine(string reservationId, int machineNumber, DateTime reservationDate, int pin);
+
+        bool UnlockMachine(int reservationId);
     }
 }

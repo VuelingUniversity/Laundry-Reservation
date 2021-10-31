@@ -13,5 +13,11 @@ namespace WundaWashReservations.ServiceLibrary.Interfaces
         bool ClaimReservation(int machineId, int pin);
 
         bool CancelReservation(int id);
+
+        string GenerateReservationId();
+
+        int ChooseWashMachine();
+
+        int GeneratePin();
     }
 }
