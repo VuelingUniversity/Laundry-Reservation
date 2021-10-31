@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("WundaWashReservations.EF.Infra")]
+[assembly: AssemblyTitle("WundaWashMachine.EF.Infra")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("HP Inc.")]
-[assembly: AssemblyProduct("WundaWashReservations.EF.Infra")]
+[assembly: AssemblyProduct("WundaWashMachine.EF.Infra")]
 [assembly: AssemblyCopyright("Copyright © HP Inc. 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-[assembly: Guid("94da8ac0-8770-4862-9c14-5ec45e2c69e2")]
+[assembly: Guid("5d02fce3-133d-48d8-b9dc-e3c40ba56a5b")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //
