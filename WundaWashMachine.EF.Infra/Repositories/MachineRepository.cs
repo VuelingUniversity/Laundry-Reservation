@@ -17,8 +17,16 @@ namespace WundaWashMachine.EF.Infra.Repositories
         {
         }
 
-        public bool Unlock()
+        public bool SaveUnlock()
         {
+            try
+            {
+                // cambiar estado lock borrar pin reservationId y dateTime
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

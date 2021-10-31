@@ -16,7 +16,13 @@ namespace WundaWashMachine.ServiceLibrary.Services
 
         public bool Unlock(string reservationId)
         {
-            throw new NotImplementedException();
+            try
+            {
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
