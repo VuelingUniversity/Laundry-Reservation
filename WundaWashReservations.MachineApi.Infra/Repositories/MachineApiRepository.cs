@@ -42,9 +42,29 @@ namespace WundaWashReservations.MachineApi.Infra.Repositories
             }
         }
 
-        public bool UnlockMachine(int reservationId)
+        public bool UnlockMachine(string reservationId, int machineNumber)
         {
-            throw new NotImplementedException();
+            try
+            {
+                MachineApiUnlockRequest unlockRequest = new MachineApiUnlockRequest
+                {
+                    ReservationId = reservationId,
+                    MachineNumber = machineNumber
+                };
+                using (WebClient client = new WebClient())
+                {
+                    client.Headers["Content-type"] = "application/json";
+                    client.Encoding = Encoding.UTF8;
+                    string bodyJson = JsonConvert.SerializeObject(unlockRequest);
+                    string ApiResponse = client.UploadString($"{_url}/UnlockMachine", bodyJson);
+                    return bool.Parse(ApiResponse);
+                }
+            }
+            catch (Exception)
+            {
+                // log excepcion api
+                throw;
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WundaWashReservations.Core.Enums;
 using WundaWashReservations.Core.Models;
 
 namespace WundaWashReservations.ADO.Infra.Mappers
@@ -19,7 +20,8 @@ namespace WundaWashReservations.ADO.Infra.Mappers
                 MachineId = reader.GetInt32(2),
                 Pin = reader.GetInt32(3),
                 PhoneNumber = reader.GetInt32(4),
-                Email = reader.GetString(5)
+                Email = reader.GetString(5),
+                Status = (StatusEnum)reader.GetInt32(6)
             };
         }
     }

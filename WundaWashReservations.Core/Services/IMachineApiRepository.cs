@@ -10,6 +10,6 @@ namespace WundaWashReservations.Core.Services
     {
         bool LockMachine(string reservationId, int machineNumber, DateTime reservationDate, int pin);
 
-        bool UnlockMachine(int reservationId);
+        bool UnlockMachine(string reservationId, int machineNumber);
     }
 }

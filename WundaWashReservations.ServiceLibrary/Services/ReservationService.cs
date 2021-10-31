@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WundaWashReservations.Core.Enums;
 using WundaWashReservations.Core.Models;
 using WundaWashReservations.Core.Services;
 using WundaWashReservations.Email.ServiceLibrary.Interfaces;
@@ -37,7 +38,8 @@ namespace WundaWashReservations.ServiceLibrary.Services
                     MachineId = ChooseWashMachine(),
                     Pin = GeneratePin(),
                     PhoneNumber = phoneNumber,
-                    Email = email
+                    Email = email,
+                    Status = StatusEnum.Pending
                 };
 
                 var repositorySaveInDBResponse = _reservationRepository.SaveReservation(reservation);
@@ -52,9 +54,25 @@ namespace WundaWashReservations.ServiceLibrary.Services
             }
         }
 
-        public bool ClaimReservation(int machineId, int pin)
+        public bool ClaimReservation(int machineNumber, int pin)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string reservationId = _reservationRepository.GetReservationIdByPin(machineNumber, pin);
+
+                if (!String.IsNullOrEmpty(reservationId))
+                {
+                    var updateResponse = _reservationRepository.UpdateReservationStatus(reservationId, StatusEnum.Used);
+                    var unlockResponse = _machineApiRepository.UnlockMachine(reservationId, machineNumber);
+                    // ver que hago si una de las dos cosas no pasa
+                    return updateResponse && unlockResponse;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public bool CancelReservation(int id)

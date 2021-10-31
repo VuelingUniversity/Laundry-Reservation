@@ -19,11 +19,25 @@ namespace WundaWashReservations.WebApi.Controllers
         }
 
         [HttpPost]
-        public bool CreateReservation([FromBody] CreateReservationRequest reservationRequest)
+        public bool CreateReservation([FromBody] CreateReservationRequest createRequest)
         {
             try
             {
-                return _reservationService.CreateReservation(reservationRequest.ReservationDate, reservationRequest.PhoneNumber, reservationRequest.Email);
+                return _reservationService.CreateReservation(createRequest.ReservationDate, createRequest.PhoneNumber, createRequest.Email);
+            }
+            catch (Exception exception)
+            {
+                // log
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public bool ClaimReservation([FromBody] ClaimReservationRequest claimRequest)
+        {
+            try
+            {
+                return _reservationService.ClaimReservation(claimRequest.MachineId, claimRequest.Pin);
             }
             catch (Exception exception)
             {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WundaWashReservations.Core.Enums;
 
 namespace WundaWashReservations.Core.Models
 {
@@ -14,5 +15,6 @@ namespace WundaWashReservations.Core.Models
         public int Pin { get; set; }
         public int PhoneNumber { get; set; }
         public string Email { get; set; }
+        public StatusEnum Status { get; set; }
     }
 }
