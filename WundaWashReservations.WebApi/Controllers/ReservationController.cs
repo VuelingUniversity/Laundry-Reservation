@@ -46,10 +46,18 @@ namespace WundaWashReservations.WebApi.Controllers
             }
         }
 
-        // PUT: api/Reservation/5
-        //[ActionName("Thumbnail")] Con esto se especifica el nombre del action en lugar del del metodo.
-        public void Put(int id, [FromBody] string value)
+        [HttpPost]
+        public bool CancelReservation([FromBody] string reservationId)
         {
+            try
+            {
+                return _reservationService.CancelReservation(reservationId);
+            }
+            catch (Exception exception)
+            {
+                // log
+                throw;
+            }
         }
     }
 }

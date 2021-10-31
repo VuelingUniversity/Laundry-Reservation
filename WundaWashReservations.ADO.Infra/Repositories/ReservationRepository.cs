@@ -91,9 +91,52 @@ namespace WundaWashReservations.ADO.Infra.Repositories
             }
         }
 
-        public bool CancelReservation(int id)
+        public int GetMachineId(string reservationId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                int machineId = 0;
+                using (SqlConnection connection = new SqlConnection(ConnectionString.WundaWashReservationsConnection))
+                {
+                    connection.Open();
+                    StringBuilder stringBuilder = new StringBuilder();
+                    using (SqlCommand command = new SqlCommand(stringBuilder.AppendFormat(SqlQueries.GetMachineId, reservationId).ToString(), connection))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        reader.Read();
+                        machineId = reader.GetInt32(0);
+                    }
+                }
+                return machineId;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public string GetEmail(string reservationId)
+        {
+            try
+            {
+                string email = string.Empty;
+                using (SqlConnection connection = new SqlConnection(ConnectionString.WundaWashReservationsConnection))
+                {
+                    connection.Open();
+                    StringBuilder stringBuilder = new StringBuilder();
+                    using (SqlCommand command = new SqlCommand(stringBuilder.AppendFormat(SqlQueries.GetEmail, reservationId).ToString(), connection))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        reader.Read();
+                        email = reader.GetString(0);
+                    }
+                }
+                return email;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

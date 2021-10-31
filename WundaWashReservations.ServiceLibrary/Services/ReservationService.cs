@@ -46,7 +46,7 @@ namespace WundaWashReservations.ServiceLibrary.Services
                 _emailService.SendConfirmationEmail(email, reservation.MachineId, reservation.Pin);
                 var machineLockReponse = _machineApiRepository.LockMachine(reservation.Id, reservation.MachineId, reservationDate, reservation.Pin);
                 return repositorySaveInDBResponse && machineLockReponse;
-                // control de si no se guarda en db o no hace lock la machine api.
+                // control de si no se guarda en db o no hace lock la machine api. Si no se envia el email que?
             }
             catch (Exception)
             {
@@ -75,9 +75,21 @@ namespace WundaWashReservations.ServiceLibrary.Services
             }
         }
 
-        public bool CancelReservation(int id)
+        public bool CancelReservation(string reservationId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var email = _reservationRepository.GetEmail(reservationId);
+                _emailService.SendCancelReservationEmail(email, reservationId);
+                var updateResponse = _reservationRepository.UpdateReservationStatus(reservationId, StatusEnum.Cancelled); var machineNumber = _reservationRepository.GetMachineId(reservationId);
+                var unlockResponse = _machineApiRepository.UnlockMachine(reservationId, machineNumber);
+                return updateResponse && unlockResponse;
+            }
+            catch (Exception exception)
+            {
+                // log
+                throw;
+            }
         }
 
         public string GenerateReservationId()

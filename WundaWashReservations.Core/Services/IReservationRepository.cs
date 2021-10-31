@@ -16,6 +16,8 @@ namespace WundaWashReservations.Core.Services
 
         string GetReservationIdByPin(int machineId, int pin);
 
-        bool CancelReservation(int id);
+        int GetMachineId(string reservationId);
+
+        string GetEmail(string reservationId);
     }
 }

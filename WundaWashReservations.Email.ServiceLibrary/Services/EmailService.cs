@@ -21,5 +21,18 @@ namespace WundaWashReservations.Email.ServiceLibrary.Services
                 throw;
             }
         }
+
+        public void SendCancelReservationEmail(string email, string reservationId)
+        {
+            try
+            {
+                Console.WriteLine($"Email enviado a {email}. Reserva con Id = {reservationId} cancelada");
+            }
+            catch (Exception)
+            {
+                // log error al enviar el email
+                throw;
+            }
+        }
     }
 }
