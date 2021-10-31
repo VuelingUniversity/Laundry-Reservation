@@ -6,6 +6,11 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
+using WundaWashMachine.Core.Services;
+using WundaWashMachine.EF.Infra.Context;
+using WundaWashMachine.EF.Infra.Repositories;
+using WundaWashMachine.ServiceLibrary.Interfaces;
+using WundaWashMachine.ServiceLibrary.Services;
 
 namespace WundaWashMachine.WebApi.App_Start
 {
@@ -18,7 +23,11 @@ namespace WundaWashMachine.WebApi.App_Start
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            //builder.RegisterType<MachineApiRepository>().As<IMachineApiRepository>();
+            builder.RegisterType<MachineService>().As<IMachineService>();
+            builder.RegisterType<MachineService>().As<IMachineService>();
+            builder.RegisterType<MachineRepository>().As<IMachineRepository>();
+            builder.RegisterType<MachineRepository>().As<IMachineRepository>();
+            builder.RegisterType<WundaWashMachineContext>().InstancePerRequest();
 
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);

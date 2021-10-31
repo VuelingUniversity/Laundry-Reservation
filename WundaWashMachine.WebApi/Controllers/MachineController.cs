@@ -4,36 +4,36 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WundaWashMachine.WebApi.Models;
 
 namespace WundaWashMachine.WebApi.Controllers
 {
     public class MachineController : ApiController
     {
-        // GET: api/Machine
-        public IEnumerable<string> Get()
+        [HttpPost]
+        public bool Lock([FromBody] LockRequest lockRequest)
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        // GET: api/Machine/5
-        public string Get(int id)
+        [HttpPost]
+        public bool Unlock([FromBody] UnlockRequest unlockRequest)
         {
-            return "value";
-        }
-
-        // POST: api/Machine
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT: api/Machine/5
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/Machine/5
-        public void Delete(int id)
-        {
+            try
+            {
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
