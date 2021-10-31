@@ -45,6 +45,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MachineService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\WundaWashMachine.Core\WundaWashMachine.Core.csproj">
+      <Project>{231E9EE3-821C-4130-A16E-D15C61E871B8}</Project>
+      <Name>WundaWashMachine.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

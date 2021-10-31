@@ -44,8 +44,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IMachineRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
