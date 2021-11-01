@@ -57,9 +57,10 @@ namespace KataMachineAPI.Infrastructure.Repositories
                 using (var conn = new SqlConnection(_path))
                 {
                     conn.Open();
-                    using (var command = new SqlCommand(SQLConsts.Reservation.GetAll, conn))
+                    using (var command = new SqlCommand(SQLConsts.Reservation.GetReservationById, conn))
                     {
                         command.CommandTimeout = 100;
+                        command.Parameters.AddWithValue("@Id", id);
                         var dataReader = command.ExecuteReader();
                         return ReservationMappers.GetReservation(dataReader);
                     }
@@ -105,7 +106,25 @@ namespace KataMachineAPI.Infrastructure.Repositories
         // Reference -> UnLockMachine
         public bool DeleteReservation(int id)
         {
-            return true;
+            try
+            {
+                using (var conn = new SqlConnection(_path))
+                {
+                    conn.Open();
+                    using (var command = new SqlCommand(SQLConsts.Reservation.DeleteReservation, conn))
+                    {
+                        command.CommandTimeout = 100;
+                        command.Parameters.AddWithValue("@Id", id);
+                        var dataReader = command.ExecuteNonQuery();
+                        return dataReader > 0;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
 
         public bool UpdateReservation(int TargetId, Reservation reservation)

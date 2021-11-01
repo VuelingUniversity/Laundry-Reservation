@@ -22,7 +22,19 @@ namespace KataMachineAPI.ServiceLibrary.Manager
         public bool CreateReservation(Reservation reservation)
         {
             var idMachineList = _machineRepository.GetAvalibleIdMachines();
-            var machineSelected = idMachineList[new Random().Next(0, idMachineList.Count)];
+            var machineSelected = -1;
+            if (idMachineList.Count == 1)
+            {
+                machineSelected = idMachineList[0];
+            }
+            else if (idMachineList.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                machineSelected = idMachineList[new Random().Next(0, idMachineList.Count)];
+            }
             reservation.MachineNumber = machineSelected;
             var isReservationCreated = _reservationRepository.CreateReservation(reservation);
             if (isReservationCreated)
@@ -35,8 +47,7 @@ namespace KataMachineAPI.ServiceLibrary.Manager
             var reservation = _reservationRepository.GetReservationById(id);
             if (reservation.PIN != PIN)
                 return false;
-            DeleteReservation(id);
-            return true;
+            return DeleteReservation(id);
         }
 
         public bool DeleteReservation(int id)

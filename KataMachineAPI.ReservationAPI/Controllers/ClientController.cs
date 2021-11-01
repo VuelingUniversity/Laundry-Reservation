@@ -20,14 +20,14 @@ namespace KataMachineAPI.ReservationAPI.Controllers
         }
 
         [Route("ClaimReservation/{id}/{PIN}")]
-        [HttpGet]
+        [HttpPost]
         public bool ClaimReservation(int id, int PIN)
         {
             return _laundryManager.ClaimReservation(id, PIN);
         }
 
         [Route("CancelReservation/{id}")]
-        [HttpGet]
+        [HttpPost]
         public void CancelReservation(int id)
         {
             _laundryManager.DeleteReservation(id);

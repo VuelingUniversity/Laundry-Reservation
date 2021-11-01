@@ -21,6 +21,8 @@ namespace KataMachineAPI.Infrastructure.Consts
             public const string InsertReservation = @"INSERT INTO Reservations
                                (ReservationDate, EmailAdress, MachineNumber, Pin)
                         VALUES (@ReservationDate, @EmailAdress, @MachineNumber, @Pin);";
+
+            public const string DeleteReservation = @"DELETE FROM Reservations where Id = @Id";
         }
 
         public static class Machine
