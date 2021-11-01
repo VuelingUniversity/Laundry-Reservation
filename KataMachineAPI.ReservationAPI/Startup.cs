@@ -1,3 +1,6 @@
+using KataMachineAPI.Core.Services;
+using KataMachineAPI.Infrastructure.Repositories;
+using KataMachineAPI.ServiceLibrary.Manager;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,6 +28,8 @@ namespace KataMachineAPI.ReservationAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IReservationRepository, ReservationRepository>(_ => new ReservationRepository(null));
+            services.AddSingleton<IMachineRepository, MachineRepository>(_ => new MachineRepository(null));
             services.AddControllers();
         }
 

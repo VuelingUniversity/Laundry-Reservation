@@ -44,6 +44,7 @@
     <Compile Include="Models\Machine.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ILaundryManager.cs" />
     <Compile Include="Services\IMachineDevice.cs" />
     <Compile Include="Services\IMachineRepository.cs" />
     <Compile Include="Services\IReservationRepository.cs" />

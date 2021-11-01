@@ -19,7 +19,7 @@ namespace KataMachineAPI.Infrastructure.Mappers
                 {
                     Id = dataReader.GetInt32(0),
                     ReservationDate = dataReader.GetDateTime(1),
-                    EmailAdress = dataReader.GetString(2),
+                    EmailAdress = dataReader.GetString(2).Trim(),
                     MachineNumber = dataReader.GetInt32(3),
                     PIN = dataReader.GetInt32(4)
                 });
@@ -34,7 +34,7 @@ namespace KataMachineAPI.Infrastructure.Mappers
             {
                 Id = dataReader.GetInt32(0),
                 ReservationDate = dataReader.GetDateTime(1),
-                EmailAdress = dataReader.GetString(2),
+                EmailAdress = dataReader.GetString(2).Trim(),
                 MachineNumber = dataReader.GetInt32(3),
                 PIN = dataReader.GetInt32(4)
             };

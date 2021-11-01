@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KataMachineAPI.ServiceLibrary.Manager
 {
-    public class LaundryManager
+    public class LaundryManager : ILaundryManager
     {
         private IMachineRepository _machineRepository;
         private IReservationRepository _reservationRepository;

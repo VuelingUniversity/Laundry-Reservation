@@ -1,4 +1,5 @@
 ﻿using KataMachineAPI.Core.Models;
+using KataMachineAPI.Core.Services;
 using KataMachineAPI.Infrastructure.Repositories;
 using KataMachineAPI.ServiceLibrary.Manager;
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,9 @@ namespace KataMachineAPI.ReservationAPI.Controllers
     {
         private LaundryManager _laundryManager;
 
-        public ReservationsController()
+        public ReservationsController(IMachineRepository _machRepo, IReservationRepository _resRepo)
         {
-            _laundryManager = new LaundryManager(new MachineRepository(null), new ReservationRepository(null));
+            _laundryManager = new LaundryManager(_machRepo, _resRepo);
         }
 
         public List<Reservation> Get()
