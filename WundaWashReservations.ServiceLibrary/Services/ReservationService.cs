@@ -91,7 +91,8 @@ namespace WundaWashReservations.ServiceLibrary.Services
             {
                 var email = _reservationRepository.GetEmail(reservationId);
                 _emailService.SendCancelReservationEmail(email, reservationId);
-                var updateResponse = _reservationRepository.UpdateReservationStatus(reservationId, StatusEnum.Cancelled); var machineNumber = _reservationRepository.GetMachineId(reservationId);
+                var updateResponse = _reservationRepository.UpdateReservationStatus(reservationId, StatusEnum.Cancelled);
+                var machineNumber = _reservationRepository.GetMachineId(reservationId);
                 var unlockResponse = _machineApiRepository.UnlockMachine(reservationId, machineNumber);
                 return updateResponse && unlockResponse;
             }
@@ -100,6 +101,11 @@ namespace WundaWashReservations.ServiceLibrary.Services
                 // log
                 throw;
             }
+        }
+
+        public void DeleteReservation(string reservationId)
+        {
+            _reservationRepository.DeleteReservation(reservationId);
         }
 
         public string GenerateReservationId()
@@ -116,11 +122,6 @@ namespace WundaWashReservations.ServiceLibrary.Services
         public int GeneratePin()
         {
             return new Random().Next(10000, 99999);
-        }
-
-        public void DeleteReservation(string reservationId)
-        {
-            _reservationRepository.DeleteReservation(reservationId);
         }
     }
 }
