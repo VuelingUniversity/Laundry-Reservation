@@ -1,0 +1,22 @@
+﻿@model List<WundaWash.Core.Models.Machine>
+@{
+    ViewBag.Title = "Home Page";
+}
+<h2>Machines Avaibles</h2>
+<p>Choose a machine from those that are available</p>
+<input type="text" class="form-inline" />
+<p></p>
+<table class="table">
+    <tr>
+        <th>Number</th>
+        <th>Model</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id_machine</td>
+            <td>@item.Model</td>
+        </tr>
+    }
+</table>
+
