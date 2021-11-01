@@ -33,6 +33,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.8.3\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +47,7 @@
     <Compile Include="Consts\SQLConsts.cs" />
     <Compile Include="Mappers\ReservationMappers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Mappers\MachineMappers.cs" />
     <Compile Include="Repositories\MachineRepository.cs" />
     <Compile Include="Repositories\ReservationRepository.cs" />
   </ItemGroup>
@@ -52,6 +56,9 @@
       <Project>{39B8F1D3-4D80-44C4-87B6-8A2769B97338}</Project>
       <Name>KataMachineAPI.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

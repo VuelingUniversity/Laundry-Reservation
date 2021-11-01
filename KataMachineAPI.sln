@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Domain", "3.Domain", "{14
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Infrastructure", "4.Infrastructure", "{A384FFE7-E7CE-4851-AF55-3F2780FD758B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataMachineAPI.ReservationAPI", "KataMachineAPI.ReservationAPI\KataMachineAPI.ReservationAPI.csproj", "{3653086F-9275-4455-900E-3DEFE1862C74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KataMachineAPI.ReservationAPI", "KataMachineAPI.ReservationAPI\KataMachineAPI.ReservationAPI.csproj", "{3653086F-9275-4455-900E-3DEFE1862C74}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataMachineAPI.ServiceLibrary", "KataMachineAPI.ServiceLibrary\KataMachineAPI.ServiceLibrary.csproj", "{4B1B6B81-63E0-42B4-999B-958289AAA502}"
 EndProject

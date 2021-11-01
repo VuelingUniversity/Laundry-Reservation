@@ -15,22 +15,25 @@ namespace KataMachineAPI.Infrastructure.Consts
 
         public static class Reservation
         {
-            public const string GetAll = @"select * from Reservations";
-            public const string GetReservationById = @"select * from Reservations where Id = @Id";
+            public const string GetAll = @"SELECT * FROM Reservations";
+            public const string GetReservationById = @"SELECT * FROM Reservations where Id = @Id";
 
             public const string InsertReservation = @"INSERT INTO Reservations
-                                                        (ReservationDate, EmailAdress, MachineNumber, Pin)
-                                                        VALUES (@ReservationDate, @EmailAdress, @MachineNumber, @Pin);";
+                               (ReservationDate, EmailAdress, MachineNumber, Pin)
+                        VALUES (@ReservationDate, @EmailAdress, @MachineNumber, @Pin);";
         }
 
         public static class Machine
         {
-            public const string GetAll = @"select * from Machines";
-            public const string IsMachineAvalible = @"select IsAvalible from Machines";
+            public const string GetAll = @"SELECT * FROM Machines";
+
+            public const string IsMachineAvalible = @"SELECT IsAvalible FROM Machines";
 
             public const string UpdateAvalible = @"UPDATE Machines
 SET IsAvalible = @IsAvalible
 WHERE Id = @Id;";
+
+            public const string GetAvalibleIdMachines = @"SELECT Id FROM Machines where IsAvalible = 1";
         }
     }
 }

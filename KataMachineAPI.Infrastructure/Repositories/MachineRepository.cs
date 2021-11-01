@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KataMachineAPI.Core.Services;
 using KataMachineAPI.Infrastructure.Consts;
+using KataMachineAPI.Infrastructure.Mappers;
 
 namespace KataMachineAPI.Infrastructure.Repositories
 {
@@ -70,6 +71,30 @@ namespace KataMachineAPI.Infrastructure.Repositories
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
+            }
+        }
+
+        public List<int> GetAvalibleIdMachines()
+        {
+            List<int> list = new List<int>();
+            try
+            {
+                using (var conn = new SqlConnection(_path))
+                {
+                    conn.Open();
+                    using (var command = new SqlCommand(SQLConsts.Machine.GetAvalibleIdMachines, conn))
+                    {
+                        command.CommandTimeout = 100;
+                        var dataReader = command.ExecuteReader();
+                        dataReader.Read();
+                        return MachineMappers.GetIdList(dataReader);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return list;
                 Console.WriteLine(e);
             }
         }
