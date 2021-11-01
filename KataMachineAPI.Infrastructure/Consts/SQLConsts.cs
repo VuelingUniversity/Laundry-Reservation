@@ -27,6 +27,10 @@ namespace KataMachineAPI.Infrastructure.Consts
         {
             public const string GetAll = @"select * from Machines";
             public const string IsMachineAvalible = @"select IsAvalible from Machines";
+
+            public const string UpdateAvalible = @"UPDATE Machines
+SET IsAvalible = @IsAvalible
+WHERE Id = @Id;";
         }
     }
 }
