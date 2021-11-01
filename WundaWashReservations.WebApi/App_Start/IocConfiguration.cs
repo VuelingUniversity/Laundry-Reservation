@@ -13,8 +13,6 @@ using WundaWashReservations.Email.ServiceLibrary.Services;
 using WundaWashReservations.MachineApi.Infra.Repositories;
 using WundaWashReservations.ServiceLibrary.Interfaces;
 using WundaWashReservations.ServiceLibrary.Services;
-using WundaWashReservations.Sms.ServiceLibrary.Interfaces;
-using WundaWashReservations.Sms.ServiceLibrary.Services;
 
 namespace WundaWashReservations.WebApi.App_Start
 {
@@ -28,7 +26,6 @@ namespace WundaWashReservations.WebApi.App_Start
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterType<ReservationService>().As<IReservationService>();
             builder.RegisterType<EmailService>().As<IEmailService>();
-            builder.RegisterType<SmsService>().As<ISmsService>();
             builder.RegisterType<ReservationRepository>().As<IReservationRepository>();
             builder.RegisterType<MachineApiRepository>().As<IMachineApiRepository>();
 

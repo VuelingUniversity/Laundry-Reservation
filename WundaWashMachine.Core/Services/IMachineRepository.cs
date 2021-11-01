@@ -14,7 +14,7 @@ namespace WundaWashMachine.Core.Services
 
         bool IsMachineUnlocked(int id);
 
-        bool ExistReservationId(int machineId, string reservationId);
+        bool ExistReservationId(string reservationId);
 
         void SaveUnlock(string reservationId);
     }

@@ -26,7 +26,7 @@ namespace WundaWashMachine.ServiceLibrary.Services
                     _machineRepository.SaveLock(machineNumber, reservationId, reservationDate, pin);
                     return true;
                 }
-                if (_machineRepository.ExistReservationId(machineNumber, reservationId))
+                if (_machineRepository.ExistReservationId(reservationId))
                 {
                     _machineRepository.UpdateLockInfo(reservationId, reservationDate, pin);
                     return true;
@@ -43,8 +43,12 @@ namespace WundaWashMachine.ServiceLibrary.Services
         {
             try
             {
-                _machineRepository.SaveUnlock(reservationId);
-                return true;
+                if (_machineRepository.ExistReservationId(reservationId))
+                {
+                    _machineRepository.SaveUnlock(reservationId);
+                    return true;
+                }
+                return false;
             }
             catch (Exception)
             {

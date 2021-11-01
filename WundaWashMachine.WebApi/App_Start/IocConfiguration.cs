@@ -24,8 +24,6 @@ namespace WundaWashMachine.WebApi.App_Start
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             builder.RegisterType<MachineService>().As<IMachineService>();
-            builder.RegisterType<MachineService>().As<IMachineService>();
-            builder.RegisterType<MachineRepository>().As<IMachineRepository>();
             builder.RegisterType<MachineRepository>().As<IMachineRepository>();
             builder.RegisterType<WundaWashMachineContext>().InstancePerRequest();
 

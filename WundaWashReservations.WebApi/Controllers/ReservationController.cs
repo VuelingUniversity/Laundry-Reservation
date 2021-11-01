@@ -60,3 +60,4 @@ namespace WundaWashReservations.WebApi.Controllers
             }
         }
     }
+}

@@ -155,10 +155,6 @@
       <Project>{4DA7E780-C6F0-4CB9-85EE-2416E88331F6}</Project>
       <Name>WundaWashReservations.ServiceLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WundaWashReservations.Sms.ServiceLibrary\WundaWashReservations.Sms.ServiceLibrary.csproj">
-      <Project>{192250C9-93AE-4A0C-B2BD-6485C37C16F8}</Project>
-      <Name>WundaWashReservations.Sms.ServiceLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

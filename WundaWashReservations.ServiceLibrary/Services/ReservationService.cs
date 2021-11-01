@@ -8,21 +8,18 @@ using WundaWashReservations.Core.Models;
 using WundaWashReservations.Core.Services;
 using WundaWashReservations.Email.ServiceLibrary.Interfaces;
 using WundaWashReservations.ServiceLibrary.Interfaces;
-using WundaWashReservations.Sms.ServiceLibrary.Interfaces;
 
 namespace WundaWashReservations.ServiceLibrary.Services
 {
     public class ReservationService : IReservationService
     {
         private readonly IEmailService _emailService;
-        private readonly ISmsService _smsService;
         private readonly IReservationRepository _reservationRepository;
         private readonly IMachineApiRepository _machineApiRepository;
 
-        public ReservationService(IEmailService emailService, ISmsService smsService, IReservationRepository reservationRepository, IMachineApiRepository machineApiRepository)
+        public ReservationService(IEmailService emailService, IReservationRepository reservationRepository, IMachineApiRepository machineApiRepository)
         {
             _emailService = emailService;
-            _smsService = smsService;
             _reservationRepository = reservationRepository;
             _machineApiRepository = machineApiRepository;
         }

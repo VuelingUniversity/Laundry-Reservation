@@ -13,6 +13,9 @@ namespace WundaWashMachine.EF.Infra.Mapping
         public MachineMapping()
         {
             HasKey(a => a.Id);
+            Property(x => x.ReservationId).IsOptional();
+            Property(x => x.ReservationDate).IsOptional();
+            Property(x => x.Pin).IsOptional();
             ToTable("Machine");
         }
     }
