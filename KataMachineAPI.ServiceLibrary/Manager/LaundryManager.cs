@@ -30,6 +30,15 @@ namespace KataMachineAPI.ServiceLibrary.Manager
             return isReservationCreated;
         }
 
+        public bool ClaimReservation(int id, int PIN)
+        {
+            var reservation = _reservationRepository.GetReservationById(id);
+            if (reservation.PIN != PIN)
+                return false;
+            DeleteReservation(id);
+            return true;
+        }
+
         public bool DeleteReservation(int id)
         {
             var isReservationDeleted = _reservationRepository.DeleteReservation(id);
