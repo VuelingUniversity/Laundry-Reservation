@@ -8,9 +8,9 @@ namespace WundaWashMachine.Core.Services
 {
     public interface IMachineRepository
     {
-        void SaveLockInfo(int machineNumber, string reservationId, DateTime reservationDate, int pin);
+        void SaveLock(int machineNumber, string reservationId, DateTime reservationDate, int pin);
 
-        void UpdateMachineInfo(string reservationId, DateTime reservationDate, int pin);
+        void UpdateLockInfo(string reservationId, DateTime reservationDate, int pin);
 
         bool IsMachineUnlocked(int id);
 

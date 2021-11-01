@@ -21,11 +21,16 @@ namespace WundaWashMachine.EF.Infra.Repositories
             _machines = machines;
         }
 
-        public void SaveLockInfo(int machineNumber, string reservationId, DateTime reservationDate, int pin)
+        public void SaveLock(int machineNumber, string reservationId, DateTime reservationDate, int pin)
         {
             try
             {
-                var machine = _machines
+                var machine = _machines.FirstOrDefault(item => item.Id == machineNumber);
+                machine.Unlocked = false;
+                machine.ReservationId = reservationId;
+                machine.ReservationDate = reservationDate;
+                machine.Pin = pin;
+                _context.SaveChanges();
             }
             catch (Exception)
             {
@@ -33,10 +38,14 @@ namespace WundaWashMachine.EF.Infra.Repositories
             }
         }
 
-        public void UpdateMachineInfo(string reservationId, DateTime reservationDate, int pin)
+        public void UpdateLockInfo(string reservationId, DateTime reservationDate, int pin)
         {
             try
             {
+                var machine = _machines.FirstOrDefault(item => item.ReservationId == reservationId);
+                machine.ReservationDate = reservationDate;
+                machine.Pin = pin;
+                _context.SaveChanges();
             }
             catch (Exception)
             {

@@ -23,12 +23,12 @@ namespace WundaWashMachine.ServiceLibrary.Services
             {
                 if (_machineRepository.IsMachineUnlocked(machineNumber))
                 {
-                    _machineRepository.SaveLockInfo(machineNumber, reservationId, reservationDate, pin);
+                    _machineRepository.SaveLock(machineNumber, reservationId, reservationDate, pin);
                     return true;
                 }
                 if (_machineRepository.ExistReservationId(machineNumber, reservationId))
                 {
-                    _machineRepository.UpdateMachineInfo(reservationId, reservationDate, pin);
+                    _machineRepository.UpdateLockInfo(reservationId, reservationDate, pin);
                     return true;
                 }
                 return false;
