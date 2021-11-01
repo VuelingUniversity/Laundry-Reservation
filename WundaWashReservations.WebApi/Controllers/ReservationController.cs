@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -27,7 +28,7 @@ namespace WundaWashReservations.WebApi.Controllers
             }
             catch (Exception exception)
             {
-                // log
+                Log.Error($"Internal error at CreateReservation with request: {createRequest}", exception);
                 throw;
             }
         }
@@ -41,7 +42,7 @@ namespace WundaWashReservations.WebApi.Controllers
             }
             catch (Exception exception)
             {
-                // log
+                Log.Error($"Internal error at ClaimReservation with request: {claimRequest}", exception);
                 throw;
             }
         }
@@ -55,7 +56,7 @@ namespace WundaWashReservations.WebApi.Controllers
             }
             catch (Exception exception)
             {
-                // log
+                Log.Error($"Internal error at CancelReservation with request: {reservationId}", exception);
                 throw;
             }
         }

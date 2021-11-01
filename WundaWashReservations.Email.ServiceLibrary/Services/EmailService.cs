@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,9 +16,9 @@ namespace WundaWashReservations.Email.ServiceLibrary.Services
             {
                 Console.WriteLine($"Email enviado a {email}. Reserva de maquina {machineId}, PIN de desbloqueo: {pin}");
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                // log error al enviar el email
+                Log.Error("Error to sendConfirmationEmail", exception);
                 throw;
             }
         }
@@ -28,9 +29,9 @@ namespace WundaWashReservations.Email.ServiceLibrary.Services
             {
                 Console.WriteLine($"Email enviado a {email}. Reserva con Id = {reservationId} cancelada");
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                // log error al enviar el email
+                Log.Error("Error to sendCandelReservationEmail", exception);
                 throw;
             }
         }
