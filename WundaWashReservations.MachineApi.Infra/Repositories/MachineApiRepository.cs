@@ -36,7 +36,7 @@ namespace WundaWashReservations.MachineApi.Infra.Repositories
             }
         }
 
-        public bool UnlockMachine(MachineUnlockRequest unlockRequest)
+        public bool UnlockMachine(string reservationId)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace WundaWashReservations.MachineApi.Infra.Repositories
                 {
                     client.Headers["Content-type"] = "application/json";
                     client.Encoding = Encoding.UTF8;
-                    string bodyJson = JsonConvert.SerializeObject(unlockRequest);
+                    string bodyJson = JsonConvert.SerializeObject(reservationId);
                     string ApiResponse = client.UploadString($"{_url}/Unlock", bodyJson);
                     return bool.Parse(ApiResponse);
                 }

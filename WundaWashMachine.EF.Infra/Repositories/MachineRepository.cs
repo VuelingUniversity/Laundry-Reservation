@@ -4,9 +4,11 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WundaWashMachine.Core.Models;
 using WundaWashMachine.Core.Services;
 using WundaWashMachine.EF.Infra.Context;
 using WundaWashMachine.EF.Infra.DTO;
+using Machine = WundaWashMachine.EF.Infra.DTO.Machine;
 
 namespace WundaWashMachine.EF.Infra.Repositories
 {
@@ -21,15 +23,15 @@ namespace WundaWashMachine.EF.Infra.Repositories
             _machines = context.Set<Machine>();
         }
 
-        public void SaveLock(int machineNumber, string reservationId, DateTime reservationDate, int pin)
+        public void SaveLock(LockRequest lockRequest)
         {
             try
             {
-                var machine = _machines.FirstOrDefault(item => item.Id == machineNumber);
+                var machine = _machines.FirstOrDefault(item => item.Id == lockRequest.MachineNumber);
                 machine.Unlocked = false;
-                machine.ReservationId = reservationId;
-                machine.ReservationDate = reservationDate;
-                machine.Pin = pin;
+                machine.ReservationId = lockRequest.ReservationId;
+                machine.ReservationDate = lockRequest.ReservationDate;
+                machine.Pin = lockRequest.Pin;
                 _context.SaveChanges();
             }
             catch (Exception)

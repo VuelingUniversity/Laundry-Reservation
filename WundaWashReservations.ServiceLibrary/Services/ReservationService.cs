@@ -58,14 +58,9 @@ namespace WundaWashReservations.ServiceLibrary.Services
 
         public void RevertCreateReservation(bool repositorySaveInDBResponse, bool machineLockReponse, string reservationId, int machineId)
         {
-            MachineUnlockRequest unlockRequest = new MachineUnlockRequest
-            {
-                ReservationId = reservationId,
-                MachineNumber = machineId
-            };
             if (!repositorySaveInDBResponse)
             {
-                _machineApiRepository.UnlockMachine(unlockRequest);
+                _machineApiRepository.UnlockMachine(reservationId);
             }
             if (!machineLockReponse)
             {
@@ -79,16 +74,11 @@ namespace WundaWashReservations.ServiceLibrary.Services
             {
                 var reservationId = _reservationRepository.GetReservationIdByPin(claimRequest.MachineId, claimRequest.Pin);
                 var status = _reservationRepository.GetReservationStatus(reservationId);
-                MachineUnlockRequest unlockRequest = new MachineUnlockRequest
-                {
-                    ReservationId = reservationId,
-                    MachineNumber = claimRequest.MachineId
-                };
 
                 if (!String.IsNullOrEmpty(reservationId) && (status != StatusEnum.Used | status != StatusEnum.Cancelled))
                 {
                     var updateResponse = _reservationRepository.UpdateReservationStatus(reservationId, StatusEnum.Used);
-                    var unlockResponse = _machineApiRepository.UnlockMachine(unlockRequest);
+                    var unlockResponse = _machineApiRepository.UnlockMachine(reservationId);
 
                     return updateResponse && unlockResponse;
                 }
@@ -105,15 +95,10 @@ namespace WundaWashReservations.ServiceLibrary.Services
             try
             {
                 var machineNumber = _reservationRepository.GetMachineId(reservationId);
-                MachineUnlockRequest unlockRequest = new MachineUnlockRequest
-                {
-                    ReservationId = reservationId,
-                    MachineNumber = machineNumber
-                };
                 var email = _reservationRepository.GetEmail(reservationId);
                 _emailRepository.SendCancelReservationEmail(email, reservationId);
                 var updateResponse = _reservationRepository.UpdateReservationStatus(reservationId, StatusEnum.Cancelled);
-                var unlockResponse = _machineApiRepository.UnlockMachine(unlockRequest);
+                var unlockResponse = _machineApiRepository.UnlockMachine(reservationId);
                 return updateResponse && unlockResponse;
             }
             catch (Exception)

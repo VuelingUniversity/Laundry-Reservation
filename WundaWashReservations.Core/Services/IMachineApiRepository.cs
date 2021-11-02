@@ -11,6 +11,6 @@ namespace WundaWashReservations.Core.Services
     {
         bool LockMachine(MachineLockRequest lockRequest);
 
-        bool UnlockMachine(MachineUnlockRequest unlockRequest);
+        bool UnlockMachine(string reservationId);
     }
 }

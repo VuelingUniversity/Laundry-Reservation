@@ -44,7 +44,6 @@
     <Compile Include="Enums\StatusEnum.cs" />
     <Compile Include="Models\ClaimReservationRequest.cs" />
     <Compile Include="Models\CreateReservationRequest.cs" />
-    <Compile Include="Models\MachineUnlockRequest.cs" />
     <Compile Include="Models\MachineLockRequest.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

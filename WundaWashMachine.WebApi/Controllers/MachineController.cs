@@ -4,8 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WundaWashMachine.Core.Models;
 using WundaWashMachine.ServiceLibrary.Interfaces;
-using WundaWashMachine.WebApi.Models;
 
 namespace WundaWashMachine.WebApi.Controllers
 {

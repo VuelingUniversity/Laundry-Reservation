@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WundaWashMachine.Core.Models;
 using WundaWashMachine.Core.Services;
 using WundaWashMachine.ServiceLibrary.Interfaces;
 
@@ -17,18 +18,18 @@ namespace WundaWashMachine.ServiceLibrary.Services
             _machineRepository = machineRepository;
         }
 
-        public bool Lock(int machineNumber, string reservationId, DateTime reservationDate, int pin)
+        public bool Lock(LockRequest lockRequest)
         {
             try
             {
-                if (_machineRepository.IsMachineUnlocked(machineNumber))
+                if (_machineRepository.IsMachineUnlocked(lockRequest.MachineNumber))
                 {
-                    _machineRepository.SaveLock(machineNumber, reservationId, reservationDate, pin);
+                    _machineRepository.SaveLock(lockRequest);
                     return true;
                 }
-                if (_machineRepository.ExistReservationId(reservationId))
+                if (_machineRepository.ExistReservationId(lockRequest.ReservationId))
                 {
-                    _machineRepository.UpdateLockInfo(reservationId, reservationDate, pin);
+                    _machineRepository.UpdateLockInfo(lockRequest.ReservationId, lockRequest.ReservationDate, lockRequest.Pin);
                     return true;
                 }
                 return false;
