@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -34,8 +35,9 @@ namespace WundaWashMachine.EF.Infra.Repositories
                 machine.Pin = lockRequest.Pin;
                 _context.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                Log.Error("Communication error with the database in SaveLock", exception);
                 throw;
             }
         }
@@ -49,8 +51,9 @@ namespace WundaWashMachine.EF.Infra.Repositories
                 machine.Pin = pin;
                 _context.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                Log.Error("Communication error with the database in UpdateLockInfo", exception);
                 throw;
             }
         }
@@ -62,8 +65,9 @@ namespace WundaWashMachine.EF.Infra.Repositories
                 var machine = _machines.FirstOrDefault(item => item.Id == id);
                 return machine.Unlocked;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                Log.Error("Communication error with the database in IsMachineUnlocked", exception);
                 throw;
             }
         }
@@ -75,8 +79,9 @@ namespace WundaWashMachine.EF.Infra.Repositories
                 var machine = _machines.FirstOrDefault(item => item.ReservationId == reservationId);
                 return machine.ReservationId.Equals(reservationId) ? true : false;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                Log.Error("Communication error with the database in ExistReservationId", exception);
                 throw;
             }
         }
@@ -92,8 +97,9 @@ namespace WundaWashMachine.EF.Infra.Repositories
                 machine.ReservationDate = null;
                 _context.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                Log.Error("Communication error with the database in SaveUnlock", exception);
                 throw;
             }
         }

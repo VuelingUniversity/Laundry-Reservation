@@ -14,6 +14,7 @@ namespace WundaWashMachine.WebApi
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
             IocConfiguration.ConfigureDependencyInjection();
+            LogConfig.ConfigureLog();
         }
     }
 }

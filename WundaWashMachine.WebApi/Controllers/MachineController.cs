@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -23,10 +24,11 @@ namespace WundaWashMachine.WebApi.Controllers
         {
             try
             {
-                return _machineService.Lock(lockRequest.MachineNumber, lockRequest.ReservationId, lockRequest.ReservationDate, lockRequest.Pin);
+                return _machineService.Lock(lockRequest);
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                Log.Error($"Internal error at Lock with request: {lockRequest}", exception);
                 throw;
             }
         }
@@ -38,8 +40,9 @@ namespace WundaWashMachine.WebApi.Controllers
             {
                 return _machineService.Unlock(reservationId);
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                Log.Error($"Internal error at Unlock with reservationId: {reservationId}", exception);
                 throw;
             }
         }
