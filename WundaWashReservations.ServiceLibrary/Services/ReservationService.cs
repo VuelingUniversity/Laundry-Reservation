@@ -23,29 +23,29 @@ namespace WundaWashReservations.ServiceLibrary.Services
             _machineApiRepository = machineApiRepository;
         }
 
-        public bool CreateReservation(DateTime reservationDate, int phoneNumber, string email)
+        public bool CreateReservation(CreateReservationRequest createRequest)
         {
             try
             {
                 Reservation reservation = new Reservation
                 {
                     Id = GenerateReservationId(),
-                    ReservationDate = reservationDate,
+                    ReservationDate = createRequest.ReservationDate,
                     MachineId = ChooseWashMachine(),
                     Pin = GeneratePin(),
-                    PhoneNumber = phoneNumber,
-                    Email = email,
+                    PhoneNumber = createRequest.PhoneNumber,
+                    Email = createRequest.Email,
                     Status = StatusEnum.Pending
                 };
                 MachineLockRequest lockRequest = new MachineLockRequest
                 {
                     ReservationId = reservation.Id,
                     MachineNumber = reservation.MachineId,
-                    ReservationDate = reservationDate,
+                    ReservationDate = reservation.ReservationDate,
                     Pin = reservation.Pin
                 };
                 var repositorySaveInDBResponse = _reservationRepository.SaveReservation(reservation);
-                _emailRepository.SendConfirmationEmail(email, reservation.MachineId, reservation.Pin);
+                _emailRepository.SendConfirmationEmail(reservation.Email, reservation.MachineId, reservation.Pin);
                 var machineLockReponse = _machineApiRepository.LockMachine(lockRequest);
                 RevertCreateReservation(repositorySaveInDBResponse, machineLockReponse, reservation.Id, reservation.MachineId);
                 return repositorySaveInDBResponse && machineLockReponse;
@@ -73,16 +73,16 @@ namespace WundaWashReservations.ServiceLibrary.Services
             }
         }
 
-        public bool ClaimReservation(int machineNumber, int pin)
+        public bool ClaimReservation(ClaimReservationRequest claimRequest)
         {
             try
             {
-                var reservationId = _reservationRepository.GetReservationIdByPin(machineNumber, pin);
+                var reservationId = _reservationRepository.GetReservationIdByPin(claimRequest.MachineId, claimRequest.Pin);
                 var status = _reservationRepository.GetReservationStatus(reservationId);
                 MachineUnlockRequest unlockRequest = new MachineUnlockRequest
                 {
                     ReservationId = reservationId,
-                    MachineNumber = machineNumber
+                    MachineNumber = claimRequest.MachineId
                 };
 
                 if (!String.IsNullOrEmpty(reservationId) && (status != StatusEnum.Used | status != StatusEnum.Cancelled))

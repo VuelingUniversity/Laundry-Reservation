@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WundaWashReservations.ADO.Infra.Connection;
 using WundaWashReservations.ADO.Infra.Queries;
 using WundaWashReservations.Core.Enums;
 using WundaWashReservations.Core.Models;

@@ -5,8 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WundaWashReservations.Core.Models;
 using WundaWashReservations.ServiceLibrary.Interfaces;
-using WundaWashReservations.WebApi.Models;
 
 namespace WundaWashReservations.WebApi.Controllers
 {
@@ -24,7 +24,7 @@ namespace WundaWashReservations.WebApi.Controllers
         {
             try
             {
-                return _reservationService.CreateReservation(createRequest.ReservationDate, createRequest.PhoneNumber, createRequest.Email);
+                return _reservationService.CreateReservation(createRequest);
             }
             catch (Exception exception)
             {
@@ -38,7 +38,7 @@ namespace WundaWashReservations.WebApi.Controllers
         {
             try
             {
-                return _reservationService.ClaimReservation(claimRequest.MachineId, claimRequest.Pin);
+                return _reservationService.ClaimReservation(claimRequest);
             }
             catch (Exception exception)
             {
