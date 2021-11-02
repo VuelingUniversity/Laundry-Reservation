@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WundaWashReservations.Email.ServiceLibrary.Interfaces;
+using WundaWashReservations.Core.Services;
 
-namespace WundaWashReservations.Email.ServiceLibrary.Services
+namespace WundaWashReservations.Email.Infra.Repositories
 {
-    public class EmailService : IEmailService
+    public class EmailRepository : IEmailRepository
     {
         public void SendConfirmationEmail(string email, int machineId, int pin)
         {

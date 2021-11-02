@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WundaWashReservations.Email.ServiceLibrary.Interfaces
+namespace WundaWashReservations.Core.Services
 {
-    public interface IEmailService
+    public interface IEmailRepository
     {
         void SendConfirmationEmail(string email, int machineId, int pin);
 

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WundaWashReservations.Core.Models;
 
 namespace WundaWashReservations.Core.Services
 {
     public interface IMachineApiRepository
     {
-        bool LockMachine(string reservationId, int machineNumber, DateTime reservationDate, int pin);
+        bool LockMachine(MachineLockRequest lockRequest);
 
-        bool UnlockMachine(string reservationId, int machineNumber);
+        bool UnlockMachine(MachineUnlockRequest unlockRequest);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -15,25 +16,29 @@ namespace WundaWashReservations.ADO.Infra.Repositories
 {
     public class ReservationRepository : IReservationRepository
     {
+        private readonly string WundaWashReservationsConnection = ConfigurationManager.AppSettings["WundaWashReservationsConnection"];
+
         public bool SaveReservation(Reservation reservation)
         {
             try
             {
-                bool result = false;
-                using (SqlConnection connection = new SqlConnection(ConnectionString.WundaWashReservationsConnection))
+                using (SqlConnection connection = new SqlConnection(WundaWashReservationsConnection))
                 {
                     connection.Open();
-                    StringBuilder stringBuilder = new StringBuilder();
-                    using (SqlCommand command = new SqlCommand(stringBuilder.AppendFormat(SqlQueries.SaveReservation, reservation.Id, reservation.ReservationDate, reservation.MachineId, reservation.Pin, reservation.PhoneNumber, reservation.Email, (Int32)reservation.Status).ToString(), connection))
+
+                    using (SqlCommand command = new SqlCommand(SqlQueries.SaveReservation, connection))
                     {
+                        command.Parameters.AddWithValue("@Id", reservation.Id);
+                        command.Parameters.AddWithValue("@ReservationDate", reservation.ReservationDate);
+                        command.Parameters.AddWithValue("@MachineId", reservation.MachineId);
+                        command.Parameters.AddWithValue("@Pin", reservation.Pin);
+                        command.Parameters.AddWithValue("@PhoneNumber", reservation.PhoneNumber);
+                        command.Parameters.AddWithValue("@Email", reservation.Email);
+                        command.Parameters.AddWithValue("@Status", (int)reservation.Status);
                         int rows = command.ExecuteNonQuery();
-                        if (rows > 0)
-                        {
-                            result = true;
-                        }
+                        return rows > 0 ? true : false;
                     }
                 }
-                return result;
             }
             catch (Exception exception)
             {
@@ -46,21 +51,18 @@ namespace WundaWashReservations.ADO.Infra.Repositories
         {
             try
             {
-                bool result = false;
-                using (SqlConnection connection = new SqlConnection(ConnectionString.WundaWashReservationsConnection))
+                using (SqlConnection connection = new SqlConnection(WundaWashReservationsConnection))
                 {
                     connection.Open();
-                    StringBuilder stringBuilder = new StringBuilder();
-                    using (SqlCommand command = new SqlCommand(stringBuilder.AppendFormat(SqlQueries.UpdateReservationStatus, reservationId, (Int32)status).ToString(), connection))
+
+                    using (SqlCommand command = new SqlCommand(SqlQueries.UpdateReservationStatus, connection))
                     {
+                        command.Parameters.AddWithValue("@Id", reservationId);
+                        command.Parameters.AddWithValue("@Status", (int)status);
                         int rows = command.ExecuteNonQuery();
-                        if (rows > 0)
-                        {
-                            result = true;
-                        }
+                        return rows > 0 ? true : false;
                     }
                 }
-                return result;
             }
             catch (Exception exception)
             {
@@ -73,19 +75,19 @@ namespace WundaWashReservations.ADO.Infra.Repositories
         {
             try
             {
-                string reservationId = string.Empty;
-                using (SqlConnection connection = new SqlConnection(ConnectionString.WundaWashReservationsConnection))
+                using (SqlConnection connection = new SqlConnection(WundaWashReservationsConnection))
                 {
                     connection.Open();
-                    StringBuilder stringBuilder = new StringBuilder();
-                    using (SqlCommand command = new SqlCommand(stringBuilder.AppendFormat(SqlQueries.GetReservationIdByPin, machineId, pin).ToString(), connection))
+
+                    using (SqlCommand command = new SqlCommand(SqlQueries.GetReservationIdByPin, connection))
                     {
+                        command.Parameters.AddWithValue("@MachineId", machineId);
+                        command.Parameters.AddWithValue("@Pin", pin);
                         SqlDataReader reader = command.ExecuteReader();
                         reader.Read();
-                        reservationId = reader.GetString(0);
+                        return reader.GetString(0);
                     }
                 }
-                return reservationId;
             }
             catch (Exception exception)
             {
@@ -98,19 +100,18 @@ namespace WundaWashReservations.ADO.Infra.Repositories
         {
             try
             {
-                int machineId = 0;
-                using (SqlConnection connection = new SqlConnection(ConnectionString.WundaWashReservationsConnection))
+                using (SqlConnection connection = new SqlConnection(WundaWashReservationsConnection))
                 {
                     connection.Open();
-                    StringBuilder stringBuilder = new StringBuilder();
-                    using (SqlCommand command = new SqlCommand(stringBuilder.AppendFormat(SqlQueries.GetMachineId, reservationId).ToString(), connection))
+
+                    using (SqlCommand command = new SqlCommand(SqlQueries.GetMachineId, connection))
                     {
+                        command.Parameters.AddWithValue("@Id", reservationId);
                         SqlDataReader reader = command.ExecuteReader();
                         reader.Read();
-                        machineId = reader.GetInt32(0);
+                        return reader.GetInt32(0);
                     }
                 }
-                return machineId;
             }
             catch (Exception exception)
             {
@@ -123,19 +124,18 @@ namespace WundaWashReservations.ADO.Infra.Repositories
         {
             try
             {
-                string email = string.Empty;
-                using (SqlConnection connection = new SqlConnection(ConnectionString.WundaWashReservationsConnection))
+                using (SqlConnection connection = new SqlConnection(WundaWashReservationsConnection))
                 {
                     connection.Open();
-                    StringBuilder stringBuilder = new StringBuilder();
-                    using (SqlCommand command = new SqlCommand(stringBuilder.AppendFormat(SqlQueries.GetEmail, reservationId).ToString(), connection))
+
+                    using (SqlCommand command = new SqlCommand(SqlQueries.GetEmail, connection))
                     {
+                        command.Parameters.AddWithValue("@Id", reservationId);
                         SqlDataReader reader = command.ExecuteReader();
                         reader.Read();
-                        email = reader.GetString(0);
+                        return reader.GetString(0);
                     }
                 }
-                return email;
             }
             catch (Exception exception)
             {
@@ -148,12 +148,15 @@ namespace WundaWashReservations.ADO.Infra.Repositories
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(ConnectionString.WundaWashReservationsConnection))
+                using (SqlConnection connection = new SqlConnection(WundaWashReservationsConnection))
                 {
                     connection.Open();
-                    StringBuilder stringBuilder = new StringBuilder();
-                    SqlCommand command = new SqlCommand(stringBuilder.AppendFormat(SqlQueries.DeleteReservation, reservationId).ToString(), connection);
-                    command.ExecuteNonQuery();
+
+                    using (SqlCommand command = new SqlCommand(SqlQueries.DeleteReservation, connection))
+                    {
+                        command.Parameters.AddWithValue("@Id", reservationId);
+                        command.ExecuteNonQuery();
+                    };
                 }
             }
             catch (Exception exception)
@@ -167,19 +170,18 @@ namespace WundaWashReservations.ADO.Infra.Repositories
         {
             try
             {
-                StatusEnum status = 0;
-                using (SqlConnection connection = new SqlConnection(ConnectionString.WundaWashReservationsConnection))
+                using (SqlConnection connection = new SqlConnection(WundaWashReservationsConnection))
                 {
                     connection.Open();
-                    StringBuilder stringBuilder = new StringBuilder();
-                    using (SqlCommand command = new SqlCommand(stringBuilder.AppendFormat(SqlQueries.GetEmail, reservationId).ToString(), connection))
+
+                    using (SqlCommand command = new SqlCommand(SqlQueries.GetEmail, connection))
                     {
+                        command.Parameters.AddWithValue("@Id", reservationId);
                         SqlDataReader reader = command.ExecuteReader();
                         reader.Read();
-                        status = (StatusEnum)reader.GetInt32(0);
+                        return (StatusEnum)reader.GetInt32(0);
                     }
                 }
-                return status;
             }
             catch (Exception exception)
             {

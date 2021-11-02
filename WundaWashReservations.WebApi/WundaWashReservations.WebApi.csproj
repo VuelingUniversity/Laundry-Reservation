@@ -150,9 +150,9 @@
       <Project>{0563D180-C50E-4574-B9F4-ACC486761E7E}</Project>
       <Name>WundaWashReservations.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WundaWashReservations.Email.ServiceLibrary\WundaWashReservations.Email.ServiceLibrary.csproj">
-      <Project>{EA37C99E-A70F-455E-9EAD-2C6FB90B4A4C}</Project>
-      <Name>WundaWashReservations.Email.ServiceLibrary</Name>
+    <ProjectReference Include="..\WundaWashReservations.Email.Infra\WundaWashReservations.Email.Infra.csproj">
+      <Project>{4609B4F5-88C0-4D0E-A75F-A118CA9F4824}</Project>
+      <Name>WundaWashReservations.Email.Infra</Name>
     </ProjectReference>
     <ProjectReference Include="..\WundaWashReservations.MachineApi.Infra\WundaWashReservations.MachineApi.Infra.csproj">
       <Project>{1B2871E3-3B16-4E4E-AB42-A8B707A29E5A}</Project>

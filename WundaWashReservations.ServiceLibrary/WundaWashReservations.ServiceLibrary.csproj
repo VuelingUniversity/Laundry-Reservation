@@ -50,10 +50,9 @@
       <Project>{0563D180-C50E-4574-B9F4-ACC486761E7E}</Project>
       <Name>WundaWashReservations.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WundaWashReservations.Email.ServiceLibrary\WundaWashReservations.Email.ServiceLibrary.csproj">
-      <Project>{EA37C99E-A70F-455E-9EAD-2C6FB90B4A4C}</Project>
-      <Name>WundaWashReservations.Email.ServiceLibrary</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

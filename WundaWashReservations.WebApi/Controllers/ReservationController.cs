@@ -56,6 +56,7 @@ namespace WundaWashReservations.WebApi.Controllers
             }
             catch (Exception exception)
             {
+                // decorador
                 Log.Error($"Internal error at CancelReservation with request: {reservationId}", exception);
                 throw;
             }

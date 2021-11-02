@@ -6,20 +6,19 @@ using System.Threading.Tasks;
 using WundaWashReservations.Core.Enums;
 using WundaWashReservations.Core.Models;
 using WundaWashReservations.Core.Services;
-using WundaWashReservations.Email.ServiceLibrary.Interfaces;
 using WundaWashReservations.ServiceLibrary.Interfaces;
 
 namespace WundaWashReservations.ServiceLibrary.Services
 {
     public class ReservationService : IReservationService
     {
-        private readonly IEmailService _emailService;
+        private readonly IEmailRepository _emailRepository;
         private readonly IReservationRepository _reservationRepository;
         private readonly IMachineApiRepository _machineApiRepository;
 
-        public ReservationService(IEmailService emailService, IReservationRepository reservationRepository, IMachineApiRepository machineApiRepository)
+        public ReservationService(IEmailRepository emailRepository, IReservationRepository reservationRepository, IMachineApiRepository machineApiRepository)
         {
-            _emailService = emailService;
+            _emailRepository = emailRepository;
             _reservationRepository = reservationRepository;
             _machineApiRepository = machineApiRepository;
         }
@@ -38,10 +37,16 @@ namespace WundaWashReservations.ServiceLibrary.Services
                     Email = email,
                     Status = StatusEnum.Pending
                 };
-
+                MachineLockRequest lockRequest = new MachineLockRequest
+                {
+                    ReservationId = reservation.Id,
+                    MachineNumber = reservation.MachineId,
+                    ReservationDate = reservationDate,
+                    Pin = reservation.Pin
+                };
                 var repositorySaveInDBResponse = _reservationRepository.SaveReservation(reservation);
-                _emailService.SendConfirmationEmail(email, reservation.MachineId, reservation.Pin);
-                var machineLockReponse = _machineApiRepository.LockMachine(reservation.Id, reservation.MachineId, reservationDate, reservation.Pin);
+                _emailRepository.SendConfirmationEmail(email, reservation.MachineId, reservation.Pin);
+                var machineLockReponse = _machineApiRepository.LockMachine(lockRequest);
                 RevertCreateReservation(repositorySaveInDBResponse, machineLockReponse, reservation.Id, reservation.MachineId);
                 return repositorySaveInDBResponse && machineLockReponse;
             }
@@ -53,9 +58,14 @@ namespace WundaWashReservations.ServiceLibrary.Services
 
         public void RevertCreateReservation(bool repositorySaveInDBResponse, bool machineLockReponse, string reservationId, int machineId)
         {
+            MachineUnlockRequest unlockRequest = new MachineUnlockRequest
+            {
+                ReservationId = reservationId,
+                MachineNumber = machineId
+            };
             if (!repositorySaveInDBResponse)
             {
-                _machineApiRepository.UnlockMachine(reservationId, machineId);
+                _machineApiRepository.UnlockMachine(unlockRequest);
             }
             if (!machineLockReponse)
             {
@@ -69,12 +79,17 @@ namespace WundaWashReservations.ServiceLibrary.Services
             {
                 var reservationId = _reservationRepository.GetReservationIdByPin(machineNumber, pin);
                 var status = _reservationRepository.GetReservationStatus(reservationId);
+                MachineUnlockRequest unlockRequest = new MachineUnlockRequest
+                {
+                    ReservationId = reservationId,
+                    MachineNumber = machineNumber
+                };
 
                 if (!String.IsNullOrEmpty(reservationId) && (status != StatusEnum.Used | status != StatusEnum.Cancelled))
                 {
                     var updateResponse = _reservationRepository.UpdateReservationStatus(reservationId, StatusEnum.Used);
-                    var unlockResponse = _machineApiRepository.UnlockMachine(reservationId, machineNumber);
-                    // ver que hago si una de las dos cosas no pasa
+                    var unlockResponse = _machineApiRepository.UnlockMachine(unlockRequest);
+
                     return updateResponse && unlockResponse;
                 }
                 return false;
@@ -89,16 +104,20 @@ namespace WundaWashReservations.ServiceLibrary.Services
         {
             try
             {
-                var email = _reservationRepository.GetEmail(reservationId);
-                _emailService.SendCancelReservationEmail(email, reservationId);
-                var updateResponse = _reservationRepository.UpdateReservationStatus(reservationId, StatusEnum.Cancelled);
                 var machineNumber = _reservationRepository.GetMachineId(reservationId);
-                var unlockResponse = _machineApiRepository.UnlockMachine(reservationId, machineNumber);
+                MachineUnlockRequest unlockRequest = new MachineUnlockRequest
+                {
+                    ReservationId = reservationId,
+                    MachineNumber = machineNumber
+                };
+                var email = _reservationRepository.GetEmail(reservationId);
+                _emailRepository.SendCancelReservationEmail(email, reservationId);
+                var updateResponse = _reservationRepository.UpdateReservationStatus(reservationId, StatusEnum.Cancelled);
+                var unlockResponse = _machineApiRepository.UnlockMachine(unlockRequest);
                 return updateResponse && unlockResponse;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                // log
                 throw;
             }
         }
