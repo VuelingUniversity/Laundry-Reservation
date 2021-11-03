@@ -37,13 +37,13 @@ namespace WundaWash.Presentation.App_Start
         private static void RegisterServices(ContainerBuilder builder)
         {
             builder.RegisterType<MachineService>().As<IMachineService>().SingleInstance();
-            builder.RegisterType<PatronService>().As<IPatronService>().SingleInstance();
+            //builder.RegisterType<PatronService>().As<IPatronService>().SingleInstance();
         }
 
         private static void RegisterRepositories(ContainerBuilder builder)
         {
             builder.RegisterType<MachineRepository>().As<IMachineRepository>().SingleInstance();
-            builder.RegisterType<PatronRepository>().As<IPatronRepository>().SingleInstance();
+            //builder.RegisterType<PatronRepository>().As<IPatronRepository>().SingleInstance();
         }
 
         private static void RegisterControllers(ContainerBuilder builder)

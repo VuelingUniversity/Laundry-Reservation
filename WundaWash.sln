@@ -21,8 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.DistributedServices", "0.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WundaWash.Presentation", "WundaWash.Presentation\WundaWash.Presentation.csproj", "{31FE6CE1-1F08-4B20-82C5-E5E6C6EE5AD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WundaWash.WebApi", "WundaWash.WebApi\WundaWash.WebApi.csproj", "{720A8759-1A50-4AD3-AFAD-756119C2EF7C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,10 +43,6 @@ Global
 		{31FE6CE1-1F08-4B20-82C5-E5E6C6EE5AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31FE6CE1-1F08-4B20-82C5-E5E6C6EE5AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31FE6CE1-1F08-4B20-82C5-E5E6C6EE5AD3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{720A8759-1A50-4AD3-AFAD-756119C2EF7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{720A8759-1A50-4AD3-AFAD-756119C2EF7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{720A8759-1A50-4AD3-AFAD-756119C2EF7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{720A8759-1A50-4AD3-AFAD-756119C2EF7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,7 +52,6 @@ Global
 		{01E8B385-E6DF-4589-924E-A9FC1DFB16D4} = {6C26D4A2-FBEB-4F66-84AF-7EF7CF919A87}
 		{FBD8A2E5-C1FD-48EF-8AD2-E866FD8AFC8F} = {58B802BB-1336-48A4-9251-E3E256D55691}
 		{31FE6CE1-1F08-4B20-82C5-E5E6C6EE5AD3} = {287F88EE-FDD4-4654-BFBB-AD64EA5D4844}
-		{720A8759-1A50-4AD3-AFAD-756119C2EF7C} = {710AA3F7-C6FA-464E-832C-329548A3BB37}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BC394936-35C3-47F4-956C-562A29167F72}

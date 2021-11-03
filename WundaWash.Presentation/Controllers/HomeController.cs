@@ -12,12 +12,10 @@ namespace WundaWash.Presentation.Controllers
     public class HomeController : Controller
     {
         private readonly IMachineService _machineService;
-        private readonly IPatronService _patronService;
 
-        public HomeController(IMachineService machineService, IPatronService patronService)
+        public HomeController(IMachineService machineService)
         {
             _machineService = machineService;
-            _patronService = patronService;
         }
 
         public ActionResult Index()
