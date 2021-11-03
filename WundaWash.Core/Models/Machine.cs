@@ -8,7 +8,7 @@ namespace WundaWash.Core.Models
 {
     public class Machine
     {
-        public int Id_machine { get; set; }
+        public int Id { get; set; }
         public string Model { get; set; }
         public bool Lock { get; set; }
     }

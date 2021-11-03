@@ -8,7 +8,7 @@ namespace WundaWash.Core.Models
 {
     public class Patron
     {
-        public int Id_patron { get; set; }
+        public int Id { get; set; }
         public int PhoneNumber { get; set; }
         public string Email { get; set; }
     }

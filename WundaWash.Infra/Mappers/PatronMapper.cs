@@ -14,7 +14,7 @@ namespace WundaWash.Infra.Mappers
         {
             Patron patron = new Patron
             {
-                Id_patron = reader.GetInt32(0),
+                Id = reader.GetInt32(0),
                 PhoneNumber = reader.GetInt32(1),
                 Email = reader.GetString(2)
             };

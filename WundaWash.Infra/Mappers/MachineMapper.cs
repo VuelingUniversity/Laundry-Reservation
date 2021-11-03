@@ -14,7 +14,7 @@ namespace WundaWash.Infra.Mappers
         {
             Machine machine = new Machine
             {
-                Id_machine = reader.GetInt32(0),
+                Id = reader.GetInt32(0),
                 Model = reader.GetString(1),
                 Lock = reader.GetBoolean(2)
             };

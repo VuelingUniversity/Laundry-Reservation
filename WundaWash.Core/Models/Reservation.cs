@@ -8,9 +8,9 @@ namespace WundaWash.Core.Models
 {
     public class Reservation
     {
-        public int Id_reservation { get; set; }
-        public int Id_patron { get; set; }
-        public int Id_machine { get; set; }
+        public int IdReservation { get; set; }
+        public int IdPatron { get; set; }
+        public int IdMachine { get; set; }
         public int Pin { get; set; }
         public DateTime DateReservation { get; set; }
     }

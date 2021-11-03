@@ -22,7 +22,7 @@ namespace WundaWash.Presentation.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View(_machineService.GetAllMachinesAvaible());
         }
 
         public ActionResult About()
