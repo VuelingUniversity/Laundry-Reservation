@@ -37,7 +37,7 @@ namespace WundaWashMachine.EF.Infra.Repositories
             }
             catch (Exception exception)
             {
-                Log.Error("Communication error with the database in SaveLock", exception);
+                Log.Error(exception, "Communication error with the database in SaveLock");
                 throw;
             }
         }
@@ -53,7 +53,7 @@ namespace WundaWashMachine.EF.Infra.Repositories
             }
             catch (Exception exception)
             {
-                Log.Error("Communication error with the database in UpdateLockInfo", exception);
+                Log.Error(exception, "Communication error with the database in UpdateLockInfo");
                 throw;
             }
         }
@@ -67,7 +67,7 @@ namespace WundaWashMachine.EF.Infra.Repositories
             }
             catch (Exception exception)
             {
-                Log.Error("Communication error with the database in IsMachineUnlocked", exception);
+                Log.Error(exception, "Communication error with the database in IsMachineUnlocked");
                 throw;
             }
         }
@@ -81,7 +81,7 @@ namespace WundaWashMachine.EF.Infra.Repositories
             }
             catch (Exception exception)
             {
-                Log.Error("Communication error with the database in ExistReservationId", exception);
+                Log.Error(exception, "Communication error with the database in ExistReservationId");
                 throw;
             }
         }
@@ -99,7 +99,7 @@ namespace WundaWashMachine.EF.Infra.Repositories
             }
             catch (Exception exception)
             {
-                Log.Error("Communication error with the database in SaveUnlock", exception);
+                Log.Error(exception, "Communication error with the database in SaveUnlock");
                 throw;
             }
         }

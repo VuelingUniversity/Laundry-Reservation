@@ -35,13 +35,13 @@ namespace WundaWashReservations.ADO.Infra.Repositories
                         command.Parameters.AddWithValue("@Email", reservation.Email);
                         command.Parameters.AddWithValue("@Status", (int)reservation.Status);
                         int rows = command.ExecuteNonQuery();
-                        return rows > 0 ? true : false;
+                        return rows > 0;
                     }
                 }
             }
             catch (Exception exception)
             {
-                Log.Error("Communication error with the database in SaveReservation", exception);
+                Log.Error(exception, "Communication error with the database in SaveReservation");
                 throw;
             }
         }
@@ -59,13 +59,13 @@ namespace WundaWashReservations.ADO.Infra.Repositories
                         command.Parameters.AddWithValue("@Id", reservationId);
                         command.Parameters.AddWithValue("@Status", (int)status);
                         int rows = command.ExecuteNonQuery();
-                        return rows > 0 ? true : false;
+                        return rows > 0;
                     }
                 }
             }
             catch (Exception exception)
             {
-                Log.Error("Communication error with the database in UpdateReservationStatus", exception);
+                Log.Error(exception, "Communication error with the database in UpdateReservationStatus");
                 throw;
             }
         }
@@ -90,7 +90,7 @@ namespace WundaWashReservations.ADO.Infra.Repositories
             }
             catch (Exception exception)
             {
-                Log.Error("Communication error with the database in GetReservationIdByPin", exception);
+                Log.Error(exception, "Communication error with the database in GetReservationIdByPin");
                 throw;
             }
         }
@@ -114,7 +114,7 @@ namespace WundaWashReservations.ADO.Infra.Repositories
             }
             catch (Exception exception)
             {
-                Log.Error("Communication error with the database in GetMachineId", exception);
+                Log.Error(exception, "Communication error with the database in GetMachineId");
                 throw;
             }
         }
@@ -138,7 +138,7 @@ namespace WundaWashReservations.ADO.Infra.Repositories
             }
             catch (Exception exception)
             {
-                Log.Error("Communication error with the database in GetEmail", exception);
+                Log.Error(exception, "Communication error with the database in GetEmail");
                 throw;
             }
         }
@@ -160,7 +160,7 @@ namespace WundaWashReservations.ADO.Infra.Repositories
             }
             catch (Exception exception)
             {
-                Log.Error("Communication error with the database in DeleteReservation", exception);
+                Log.Error(exception, "Communication error with the database in DeleteReservation");
                 throw;
             }
         }
@@ -184,7 +184,7 @@ namespace WundaWashReservations.ADO.Infra.Repositories
             }
             catch (Exception exception)
             {
-                Log.Error("Communication error with the database in GetReservationStatus", exception);
+                Log.Error(exception, "Communication error with the database in GetReservationStatus");
                 throw;
             }
         }

@@ -31,7 +31,7 @@ namespace WundaWashReservations.MachineApi.Infra.Repositories
             }
             catch (Exception exception)
             {
-                Log.Error("Error in lock request to machine api", exception);
+                Log.Error(exception, "Error in lock request to machine api");
                 throw;
             }
         }
@@ -51,7 +51,7 @@ namespace WundaWashReservations.MachineApi.Infra.Repositories
             }
             catch (Exception exception)
             {
-                Log.Error("Error in unlock request to machine api", exception);
+                Log.Error(exception, "Error in unlock request to machine api");
                 throw;
             }
         }

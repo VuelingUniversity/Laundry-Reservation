@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using Newtonsoft.Json;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace WundaWashMachine.WebApi.Controllers
             }
             catch (Exception exception)
             {
-                Log.Error($"Internal error at Lock with request: {lockRequest}", exception);
+                Log.Error(exception, $"Internal error at Lock with request: {JsonConvert.SerializeObject(lockRequest)}");
                 throw;
             }
         }
@@ -42,7 +43,7 @@ namespace WundaWashMachine.WebApi.Controllers
             }
             catch (Exception exception)
             {
-                Log.Error($"Internal error at Unlock with reservationId: {reservationId}", exception);
+                Log.Error(exception, $"Internal error at Unlock with reservationId: {reservationId}");
                 throw;
             }
         }

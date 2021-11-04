@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WundaWashMachine.ServiceLib
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WundaWashReservations.Email.Infra", "WundaWashReservations.Email.Infra\WundaWashReservations.Email.Infra.csproj", "{4609B4F5-88C0-4D0E-A75F-A118CA9F4824}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WundaWashReservations.Sms.Infra", "WundaWashReservations.Sms.Infra\WundaWashReservations.Sms.Infra.csproj", "{B4999DAB-5602-4F72-B033-602101B15D8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,10 @@ Global
 		{4609B4F5-88C0-4D0E-A75F-A118CA9F4824}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4609B4F5-88C0-4D0E-A75F-A118CA9F4824}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4609B4F5-88C0-4D0E-A75F-A118CA9F4824}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4999DAB-5602-4F72-B033-602101B15D8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4999DAB-5602-4F72-B033-602101B15D8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4999DAB-5602-4F72-B033-602101B15D8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4999DAB-5602-4F72-B033-602101B15D8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,6 +132,7 @@ Global
 		{400ADB51-09A0-4B00-98E2-50FAFD2AD356} = {91676F09-EDD7-4F78-B32B-38FFE5D3DC56}
 		{2AF180F9-AE9E-44A4-81B0-3005388F6A25} = {E968CD00-C828-425A-8D3D-C966C2946907}
 		{4609B4F5-88C0-4D0E-A75F-A118CA9F4824} = {C16AAB12-3BFB-49D3-995D-170FCF3FEF6B}
+		{B4999DAB-5602-4F72-B033-602101B15D8C} = {C16AAB12-3BFB-49D3-995D-170FCF3FEF6B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9929D756-3EF0-4D38-8EC8-68E884CA4D02}

@@ -4,7 +4,7 @@ using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WundaWashMachine.EF.Infra.DTO;
+using WundaWashMachine.Core.Models;
 
 namespace WundaWashMachine.EF.Infra.Mapping
 {

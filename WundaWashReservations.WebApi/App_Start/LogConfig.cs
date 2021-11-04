@@ -11,7 +11,7 @@ namespace WundaWashReservations.WebApi.App_Start
         public static void ConfigureLog()
         {
             var log = new LoggerConfiguration()
-            .WriteTo.File("logs/myapp.txt", rollingInterval: RollingInterval.Day)
+            .WriteTo.File(@"c:\logs\WundaWash.txt", rollingInterval: RollingInterval.Day)
             .CreateLogger();
 
             Log.Logger = log;

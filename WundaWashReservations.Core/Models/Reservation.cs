@@ -16,5 +16,17 @@ namespace WundaWashReservations.Core.Models
         public int PhoneNumber { get; set; }
         public string Email { get; set; }
         public StatusEnum Status { get; set; }
+
+        public Reservation()
+        {
+        }
+
+        public void Validate()
+        {
+            if (MachineId < 1 || MachineId > 25)
+            {
+                throw new Exception("");
+            }
+        }
     }
 }

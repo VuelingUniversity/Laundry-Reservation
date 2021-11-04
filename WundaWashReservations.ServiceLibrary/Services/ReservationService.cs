@@ -45,7 +45,7 @@ namespace WundaWashReservations.ServiceLibrary.Services
                     Pin = reservation.Pin
                 };
                 var repositorySaveInDBResponse = _reservationRepository.SaveReservation(reservation);
-                _emailRepository.SendConfirmationEmail(reservation.Email, reservation.MachineId, reservation.Pin);
+                _emailRepository.SendConfirmationEmail(reservation.Email, reservation.Id, reservation.MachineId, reservation.Pin);
                 var machineLockReponse = _machineApiRepository.LockMachine(lockRequest);
                 RevertCreateReservation(repositorySaveInDBResponse, machineLockReponse, reservation.Id, reservation.MachineId);
                 return repositorySaveInDBResponse && machineLockReponse;

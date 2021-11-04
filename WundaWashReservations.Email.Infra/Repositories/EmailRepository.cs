@@ -10,15 +10,16 @@ namespace WundaWashReservations.Email.Infra.Repositories
 {
     public class EmailRepository : IEmailRepository
     {
-        public void SendConfirmationEmail(string email, int machineId, int pin)
+        public void SendConfirmationEmail(string email, string ReservationId, int machineId, int pin)
         {
             try
             {
-                Console.WriteLine($"Email enviado a {email}. Reserva de maquina {machineId}, PIN de desbloqueo: {pin}");
+                // usuario -> {email}
+                // mensaje -> Reserva {ReservationId} creada para la lavadora {machineId} con PIN de desbloqueo: {pin}
             }
             catch (Exception exception)
             {
-                Log.Error("Error to sendConfirmationEmail", exception);
+                Log.Error(exception, "Error to sendConfirmationEmail");
                 throw;
             }
         }
@@ -27,11 +28,12 @@ namespace WundaWashReservations.Email.Infra.Repositories
         {
             try
             {
-                Console.WriteLine($"Email enviado a {email}. Reserva con Id = {reservationId} cancelada");
+                // usuario -> email
+                // mensaje -> Reserva {reservationId} cancelada
             }
             catch (Exception exception)
             {
-                Log.Error("Error to sendCandelReservationEmail", exception);
+                Log.Error(exception, "Error to sendCandelReservationEmail");
                 throw;
             }
         }

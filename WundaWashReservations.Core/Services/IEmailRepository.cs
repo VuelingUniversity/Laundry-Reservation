@@ -8,7 +8,7 @@ namespace WundaWashReservations.Core.Services
 {
     public interface IEmailRepository
     {
-        void SendConfirmationEmail(string email, int machineId, int pin);
+        void SendConfirmationEmail(string email, string reservationId, int machineId, int pin);
 
         void SendCancelReservationEmail(string email, string reservationId);
     }
