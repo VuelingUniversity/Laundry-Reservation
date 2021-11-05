@@ -1,4 +1,4 @@
-using KataMachineAPI.Core.Services;
+﻿using KataMachineAPI.Core.Services;
 using KataMachineAPI.Infrastructure.Repositories;
 using KataMachineAPI.ServiceLibrary.Manager;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace KataMachineAPI.ReservationAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseSerilogRequestLogging();
             app.UseHttpsRedirection();
 
             app.UseRouting();

@@ -3,6 +3,7 @@ using KataMachineAPI.Core.Services;
 using KataMachineAPI.Infrastructure.Repositories;
 using KataMachineAPI.ServiceLibrary.Manager;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace KataMachineAPI.ReservationAPI.Controllers
         [HttpPost("AddReservation")]
         public bool AddReservation(Reservation reservation)
         {
+            Log.Information($"ReservationController: Someone claims Reservation [ID : {reservation.Id}]");
             return _laundryManager.CreateReservation(reservation);
         }
 

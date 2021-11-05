@@ -1,6 +1,7 @@
 ﻿using KataMachineAPI.Core.Services;
 using KataMachineAPI.ServiceLibrary.Manager;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace KataMachineAPI.ReservationAPI.Controllers
         [HttpPost]
         public bool ClaimReservation(int id, int PIN)
         {
+            Log.Information($"ClientController: Someone claims Reservation [PIN : {PIN} - Id : {id}]");
             return _laundryManager.ClaimReservation(id, PIN);
         }
 
@@ -30,6 +32,7 @@ namespace KataMachineAPI.ReservationAPI.Controllers
         [HttpPost]
         public void CancelReservation(int id)
         {
+            Log.Information($"ClientController: Someone cancelled his Reservation [Id : {id}]");
             _laundryManager.DeleteReservation(id);
         }
     }

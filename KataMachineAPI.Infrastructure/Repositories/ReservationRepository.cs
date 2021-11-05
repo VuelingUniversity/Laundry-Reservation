@@ -68,9 +68,9 @@ namespace KataMachineAPI.Infrastructure.Repositories
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                System.Diagnostics.Debug.WriteLine(e);
+                return null;
             }
-            return null;
         }
 
         // Reference -> LockMachine
