@@ -5,8 +5,4 @@
     <RootNamespace>Laundry_Reservation.Domain</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

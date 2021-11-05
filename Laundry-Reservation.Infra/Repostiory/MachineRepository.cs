@@ -1,4 +1,5 @@
 ﻿using Laundry_Reservation.Domain.Models;
+using Laundry_Reservation.Domain.Services;
 using Laundry_Reservation.Infra.Mappers;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace Laundry_Reservation.Infra.Repostiory
 {
-    public class MachineRepository
+    public class MachineRepository : IMachineRepository
     {
         private readonly string _connString;
 
