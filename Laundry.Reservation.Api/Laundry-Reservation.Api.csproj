@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Laundry-Reservation.Domain\Laundry-Reservation.Domain.csproj" />
+    <ProjectReference Include="..\Laundry-Reservation.Infra\Laundry-Reservation.Infra.csproj" />
+  </ItemGroup>
+
+</Project>
