@@ -13,10 +13,10 @@ namespace LaundryReservation.Infraestructure.EF.Mappers
         public ReservationMapping()
         {
             HasKey(i => i.Id);
-            Property(i => i.Id).HasColumnName("Id");
-            Property(i => i.ReservationDate).HasColumnName("ReservationDate");
-            Property(i => i.Pin).HasColumnName("Pin");
-            Property(i => i.Active).HasColumnName("Active");
+            Property(i => i.Id).HasColumnName("Id").IsRequired();
+            Property(i => i.ReservationDate).HasColumnName("ReservationDate").IsOptional();
+            Property(i => i.Pin).HasColumnName("Pin").IsOptional();
+            Property(i => i.Active).HasColumnName("Active").IsOptional();
             HasOptional(i => i.Machine).WithMany().HasForeignKey(i => i.IdMachine);
             ToTable("Reservation");
         }

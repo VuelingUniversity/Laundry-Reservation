@@ -13,9 +13,9 @@ namespace LaundryReservation.Infraestructure.EF.Mappers
         public MachineMapping()
         {
             HasKey(i => i.Id);
-            Property(i => i.Id).HasColumnName("Id");
-            Property(i => i.Code).HasColumnName("Code");
-            Property(i => i.Active).HasColumnName("Active");
+            Property(i => i.Id).HasColumnName("Id").IsRequired();
+            Property(i => i.Code).HasColumnName("Code").IsOptional();
+            Property(i => i.Active).HasColumnName("Active").IsOptional();
             HasMany(i => i.Reservations);
             ToTable("Machine");
         }

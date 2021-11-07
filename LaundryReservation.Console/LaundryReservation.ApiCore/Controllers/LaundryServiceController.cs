@@ -13,17 +13,24 @@ namespace LaundryReservation.ApiCore.Controllers
     [Route("[controller]")]
     public class LaundryServiceController: ControllerBase
     {
-        private LaundryManager _laundryManager;
+       // private LaundryManager _laundryManager;
+        private IMachineRepository _machineManager;
 
-        public LaundryServiceController(IMachineRepository machineRepository, IReservationRepository reservationRepository)
+        public LaundryServiceController(IMachineRepository machineManager)
+        {
+            _machineManager = machineManager;
+        }
+
+        /*public LaundryServiceController(IMachineRepository machineRepository, IReservationRepository reservationRepository)
         {
             _laundryManager = new LaundryManager(machineRepository, reservationRepository);
-        }
+        }*/
 
         [HttpGet]
-        public List<Reservation> GetReservation()
+        public List<Machine> GetAll()
         {
-            return _laundryManager.GetReservations();
+            return _machineManager.GetAllEnableMachine();
         }
+
     }
 }
