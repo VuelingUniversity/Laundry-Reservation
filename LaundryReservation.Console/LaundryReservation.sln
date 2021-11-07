@@ -17,11 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaundryServices.Core", "Lau
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaundryReservation.Infraestructure.EF", "LaundryReservation.Infraestructure.EF\LaundryReservation.Infraestructure.EF.csproj", "{31E13DCA-BD8C-4F46-9ACF-2BC3C3A98D6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaundryReservation.API", "LaundryReservation.API\LaundryReservation.API.csproj", "{788083C3-22B6-4404-AF4A-9EC604F58980}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaundryReservation.WebApi.FW", "LaundryReservation.WebApi.FW\LaundryReservation.WebApi.FW.csproj", "{579C193F-191E-469D-8403-F481FB428D4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaundryReservation.WebApiCore", "LaundryReservation.WebApiCore\LaundryReservation.WebApiCore.csproj", "{4D8893A7-7038-4EAB-BAAE-393BE73292EC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaundryReservation.Infraestructure.ADO", "LaundryReservation.Infraestructure.ADO\LaundryReservation.Infraestructure.ADO.csproj", "{E0A259FB-C16B-419F-8A21-82B6F7A72802}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaundryReservation.ApiCore", "LaundryReservation.ApiCore\LaundryReservation.ApiCore.csproj", "{E00F1408-FA39-4804-BA20-BE30A3E34B9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,18 +39,14 @@ Global
 		{31E13DCA-BD8C-4F46-9ACF-2BC3C3A98D6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31E13DCA-BD8C-4F46-9ACF-2BC3C3A98D6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31E13DCA-BD8C-4F46-9ACF-2BC3C3A98D6C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{788083C3-22B6-4404-AF4A-9EC604F58980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{788083C3-22B6-4404-AF4A-9EC604F58980}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{788083C3-22B6-4404-AF4A-9EC604F58980}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{788083C3-22B6-4404-AF4A-9EC604F58980}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D8893A7-7038-4EAB-BAAE-393BE73292EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D8893A7-7038-4EAB-BAAE-393BE73292EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D8893A7-7038-4EAB-BAAE-393BE73292EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D8893A7-7038-4EAB-BAAE-393BE73292EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E0A259FB-C16B-419F-8A21-82B6F7A72802}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0A259FB-C16B-419F-8A21-82B6F7A72802}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0A259FB-C16B-419F-8A21-82B6F7A72802}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0A259FB-C16B-419F-8A21-82B6F7A72802}.Release|Any CPU.Build.0 = Release|Any CPU
+		{579C193F-191E-469D-8403-F481FB428D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{579C193F-191E-469D-8403-F481FB428D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{579C193F-191E-469D-8403-F481FB428D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{579C193F-191E-469D-8403-F481FB428D4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E00F1408-FA39-4804-BA20-BE30A3E34B9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E00F1408-FA39-4804-BA20-BE30A3E34B9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E00F1408-FA39-4804-BA20-BE30A3E34B9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E00F1408-FA39-4804-BA20-BE30A3E34B9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,9 +55,7 @@ Global
 		{D87EAE35-0DA0-4DCB-BAFE-E998654E338F} = {0C700456-2F34-4CF7-8986-6977A01DA481}
 		{25099A67-5E04-4DF8-A734-E2C61447E96E} = {6E281DE8-CD1D-4AD2-AC71-CDF730B1077D}
 		{31E13DCA-BD8C-4F46-9ACF-2BC3C3A98D6C} = {90BEBFA8-67D3-4B5B-93C7-DEE477ADA127}
-		{788083C3-22B6-4404-AF4A-9EC604F58980} = {2D7B264F-4587-475B-A043-5EA5C6BB27D5}
-		{4D8893A7-7038-4EAB-BAAE-393BE73292EC} = {2D7B264F-4587-475B-A043-5EA5C6BB27D5}
-		{E0A259FB-C16B-419F-8A21-82B6F7A72802} = {90BEBFA8-67D3-4B5B-93C7-DEE477ADA127}
+		{579C193F-191E-469D-8403-F481FB428D4F} = {2D7B264F-4587-475B-A043-5EA5C6BB27D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {98CD8ADC-FFE4-428D-A2EF-5B2FFB2F3DF7}
